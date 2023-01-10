@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --cor-laranja: #ffa500;
+  --cor-laranja-2: #e99700;
+  --cor-preto: #0e0d0d;
+  --altura-header: 70px;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  background-color: var(--cor-preto);
+  font-family: Nunito, sans-serif;
+  color: var(--cor-laranja);
+}
+.bg-image {
+  height: 100%;
+  background-image: url("../assets/bg-main.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(2px);
+}
+header {
+  padding: 8px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(255, 165, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  height: var(--altura-header);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: var(--altura-header);
+  z-index: 9;
+}
+header nav.menu ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  gap: 18px;
+}
+header nav.menu ul li {
+  color: white;
+  text-transform: uppercase;
+}
+header section.user {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  text-transform: uppercase;
+}
+section.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+section.logo img {
+  width: 64px;
+  height: 64px;
+}
+section.logo span {
+  font-size: 24px;
+  font-weight: 600;
+}
+main {
+  position: absolute;
+  top: var(--altura-header);
+  height: calc(100% - var(--altura-header));
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+section.nopain {
+  width: 800px;
+  height: 320px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  font-family: Montserrat, sans-serif;
+  line-height: 1.5;
+  text-align: center;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+section.nopain h1 {
+  font-size: 54px;
+  color: white;
+}
+section.nopain p {
+  font-size: 24px;
+  color: #cdcdcd;
+}
+section.nopain button {
+  width: 260px;
+  margin-top: 40px;
+  padding: 12px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: var(--cor-laranja-2);
+  color: white;
+  text-transform: uppercase;
+  transition: all 0.4s;
+}
+section.nopain button:hover {
+  filter: brightness(0.8);
+}
+section.nopain button:active {
+  transform: translate(2px, 2px);
+}
+@media (max-width: 600px) {
+  section.nopain {
+    height: 80%;
+    justify-content: space-evenly;
+  }
+  section.nopain h1 {
+    font-size: 48px;
+  }
+  section.nopain p {
+    font-size: 20px;
+  }
+  section.nopain button {
+    margin-top: 0;
+  }
+}
