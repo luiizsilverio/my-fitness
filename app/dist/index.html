@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,31 +22,33 @@
       </section>
 
       <nav class="menu">
-        <a href="/" class="opcao-atual">Início</a>
-        <a href="#">Quem somos</a>
-        <a href="#">Horários</a>
-        <a href="#">Loja</a>
-        <a href="#">Treinos</a>
-        <a href="#">Exercícios</a>
-        <a href="#">Clientes</a>
+        <a href="#" class="tela-atual" data-tela="0">Início</a>
+        <a href="#" data-tela="1">Quem somos</a>
+        <a href="#" data-tela="2">Horários</a>
+        <a href="#" data-tela="3">Loja</a>
+        <a href="#" data-tela="4">Treinos</a>
+        <a href="#" data-tela="5">Exercícios</a>
+        <a href="#" data-tela="6">Clientes</a>
       </nav>
 
       <section class="user">
-        <a href="/"><i class="far fa-user"></i></a>
-        <span>Entrar</span>
+        <a href="#" data-tela="9">
+          <i class="far fa-user"></i>
+          <span>Entrar</span>
+        </a>
       </section>
 
       <section class="menu-mobile hidden">
-        <a href="/"><i class="fas fa-bars"></i></a>
+        <a href="#"><i class="fas fa-bars"></i></a>
         <nav class="mobile">
-          <a href="/">Início</a>
-          <a href="#">Entrar</a>
-          <a href="#">Quem somos</a>
-          <a href="#">Horários</a>
-          <a href="#">Loja</a>
-          <a href="#">Treinos</a>
-          <a href="#">Exercícios</a>
-          <a href="#">Clientes</a>
+          <a href="#" data-tela="0">Início</a>
+          <a href="#" data-tela="9">Entrar</a>
+          <a href="#" data-tela="1">Quem somos</a>
+          <a href="#" data-tela="2">Horários</a>
+          <a href="#" data-tela="3">Loja</a>
+          <a href="#" data-tela="4">Treinos</a>
+          <a href="#" data-tela="5">Exercícios</a>
+          <a href="#" data-tela="6">Clientes</a>
         </nav>
       </section>
     </header>
@@ -60,5 +62,7 @@
         <button>Seja um de nós</button>
       </section>
     </main>
+
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>

@@ -30,6 +30,29 @@ body {
   filter: blur(2px);
 }
 
+nav a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all .2s;
+}
+
+nav.menu a {
+  &.tela-atual, &:hover {
+    color: var(--cor-laranja);
+  }
+}
+
+i {
+  font-size: 24px;
+  color: var(--cor-laranja);
+  cursor: pointer;
+
+  &.fa-bars {
+    font-size: 32px;
+  }
+}
+
 header {
   padding: 8px 18px;
   max-width: 1100px;
@@ -63,31 +86,20 @@ header {
     align-items: center;
     height: 100%;
 
+    a {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+
     span {
       font-size: 12px;
       text-transform: uppercase;
+      color: var(--cor-laranja);
+      cursor: pointer;
     }
-  }
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: all .2s;
-
-  &.opcao-atual, &:hover {
-    color: var(--cor-laranja);
-  }
-}
-
-i {
-  font-size: 24px;
-  color: var(--cor-laranja);
-  cursor: pointer;
-
-  &.fa-bars {
-    font-size: 32px;
   }
 }
 
@@ -185,6 +197,7 @@ section.menu-mobile {
 
       &:hover {
         background-color: rgba(0, 0, 0, 0.7);
+        color: white;
       }
     }
   }

@@ -1,0 +1,23 @@
+{
+  "name": "my-fitness",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc",
+    "dev": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luiizsilverio/my-fitness.git"
+  },
+  "author": "Luiz Oliveira <luiiz.silverio@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luiizsilverio/my-fitness/issues"
+  },
+  "homepage": "https://github.com/luiizsilverio/my-fitness#readme",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
+}
