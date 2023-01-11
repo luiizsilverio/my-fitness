@@ -27,13 +27,14 @@ body {
   filter: blur(2px);
 }
 header {
-  padding: 8px 24px;
+  padding: 8px 18px;
   max-width: 1100px;
   margin: 0 auto;
   border-bottom: 1px solid rgba(255, 165, 0, 0.7);
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: space-between;
+  gap: 8px;
   height: var(--altura-header);
   position: fixed;
   top: 0;
@@ -42,22 +43,36 @@ header {
   bottom: var(--altura-header);
   z-index: 9;
 }
-header nav.menu ul {
-  list-style-type: none;
+header nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  height: 100%;
-  gap: 18px;
+  flex: 1;
 }
-header nav.menu ul li {
+header nav a {
   color: white;
+  text-decoration: none;
   text-transform: uppercase;
+  transition: all 0.2s;
+}
+header nav a.opcao-atual,
+header nav a:hover {
+  color: var(--cor-laranja);
 }
 header section.user {
   display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   height: 100%;
+  cursor: pointer;
+}
+header section.user i {
+  font-size: 24px;
+  color: var(--cor-laranja);
+}
+header section.user span {
+  font-size: 12px;
   text-transform: uppercase;
 }
 section.logo {
