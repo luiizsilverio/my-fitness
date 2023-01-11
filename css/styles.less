@@ -39,6 +39,7 @@ header {
   display: flex;
   justify-content: space-between;
   gap: 8px;
+  user-select: none;
 
   height: var(--altura-header);
   position: fixed;
@@ -48,22 +49,11 @@ header {
   bottom: var(--altura-header);
   z-index: 9;
 
-  nav {
+  nav.menu {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex: 1;
-
-    a {
-      color: white;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: all .2s;
-
-      &.opcao-atual, &:hover {
-        color: var(--cor-laranja);
-      }
-    }
   }
 
   section.user {
@@ -72,16 +62,32 @@ header {
     justify-content: space-evenly;
     align-items: center;
     height: 100%;
-    cursor: pointer;
 
-    i {
-      font-size: 24px;
-      color: var(--cor-laranja);
-    }
     span {
       font-size: 12px;
       text-transform: uppercase;
     }
+  }
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all .2s;
+
+  &.opcao-atual, &:hover {
+    color: var(--cor-laranja);
+  }
+}
+
+i {
+  font-size: 24px;
+  color: var(--cor-laranja);
+  cursor: pointer;
+
+  &.fa-bars {
+    font-size: 32px;
   }
 }
 
@@ -95,9 +101,9 @@ section.logo {
       height: 64px;
     }
 
-    span {
-      font-size: 24px;
-      font-weight: 600;
+  span {
+    font-size: 24px;
+    font-weight: 600;
   }
 }
 
@@ -157,6 +163,39 @@ section.nopain {
   }
 }
 
+section.menu-mobile {
+  display: flex;
+  align-items: center; /* centraliza verticalmente o ícone do menu */
+
+  nav.mobile {
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    height: 340px;
+    position: absolute;
+    right: 8px;
+    top: calc(8px + var(--altura-header));
+    padding: 12px 0;
+    padding-top: 18px;
+    background-color: var(--cor-laranja-2);
+
+    a {
+      padding: 8px 12px;
+      transition: all .3s;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+    }
+  }
+}
+
+section.hidden {
+  display: none;
+}
+
+// MEDIA QUERIES -----------------------------------------------------
+
 @media (max-width: 600px) {
   section.nopain {
     height: 80%;
@@ -170,6 +209,38 @@ section.nopain {
     }
     button {
       margin-top: 0;
+    }
+  }
+
+}
+
+@media (max-width: 520px) {
+  header section.menu-mobile {
+    nav.mobile {
+      min-width: calc(100% - 16px);
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  header {
+    nav.menu {
+      display: none;
+    }
+    section.user {
+      display: none;
+    }
+  }
+
+  header section.menu-mobile {
+    display: flex;
+
+    nav.mobile {
+      display: none;
+
+      &.show-menu {
+        display: flex;
+      }
     }
   }
 }
