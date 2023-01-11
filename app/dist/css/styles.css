@@ -26,6 +26,24 @@ body {
   background-size: cover;
   filter: blur(2px);
 }
+nav a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+nav.menu a.tela-atual,
+nav.menu a:hover {
+  color: var(--cor-laranja);
+}
+i {
+  font-size: 24px;
+  color: var(--cor-laranja);
+  cursor: pointer;
+}
+i.fa-bars {
+  font-size: 32px;
+}
 header {
   padding: 8px 18px;
   max-width: 1100px;
@@ -57,27 +75,18 @@ header section.user {
   align-items: center;
   height: 100%;
 }
+header section.user a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
 header section.user span {
   font-size: 12px;
   text-transform: uppercase;
-}
-nav a {
-  color: white;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: all 0.2s;
-}
-nav a.opcao-atual,
-nav a:hover {
-  color: var(--cor-laranja);
-}
-i {
-  font-size: 24px;
   color: var(--cor-laranja);
   cursor: pointer;
-}
-i.fa-bars {
-  font-size: 32px;
 }
 section.logo {
   display: flex;
@@ -165,6 +174,7 @@ section.menu-mobile nav.mobile a {
 }
 section.menu-mobile nav.mobile a:hover {
   background-color: rgba(0, 0, 0, 0.7);
+  color: white;
 }
 section.hidden {
   display: none;
