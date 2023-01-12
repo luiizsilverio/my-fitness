@@ -51,6 +51,12 @@ i {
   &.fa-bars {
     font-size: 32px;
   }
+  &.fab, &.fa-calendar-alt, &.fa-shopping-cart {
+    font-size: 38px;
+  }
+  &:active {
+    transform: scale(1.1);
+  }
 }
 
 header {
@@ -128,9 +134,9 @@ main {
   align-items: center;
 }
 
-section.nopain {
-  width: 800px;
-  height: 320px;
+main section {
+  width: 900px;
+  min-height: 320px;
   max-width: 90%;
   display: flex;
   flex-direction: column;
@@ -158,11 +164,12 @@ section.nopain {
     margin-top: 40px;
     padding: 12px;
     font-size: 20px;
+    font-weight: 600;
     cursor: pointer;
     border: none;
     outline: none;
-    background-color: var(--cor-laranja-2);
-    color: white;
+    background-color: var(--cor-laranja);
+    color: var(--cor-preto); /* white;*/
     text-transform: uppercase;
     transition: all .4s;
 
@@ -200,6 +207,21 @@ section.menu-mobile {
         color: white;
       }
     }
+  }
+}
+
+.social {
+  padding-top: 24px;
+  display: flex;
+  gap: 18px;
+}
+
+.title {
+  // display: flex;
+  // align-items: center;
+  // gap: 18px;
+  i {
+    margin: 12px 0;
   }
 }
 

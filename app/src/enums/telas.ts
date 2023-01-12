@@ -6,5 +6,5 @@ export enum Telas {
   TREINOS = 4,
   EXERCICIOS = 5,
   CLIENTES = 6,
-  LOGIN = 9,
+  LOGIN = 7,
 }

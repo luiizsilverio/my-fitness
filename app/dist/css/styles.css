@@ -44,6 +44,14 @@ i {
 i.fa-bars {
   font-size: 32px;
 }
+i.fab,
+i.fa-calendar-alt,
+i.fa-shopping-cart {
+  font-size: 38px;
+}
+i:active {
+  transform: scale(1.1);
+}
 header {
   padding: 8px 18px;
   max-width: 1100px;
@@ -109,9 +117,9 @@ main {
   display: flex;
   align-items: center;
 }
-section.nopain {
-  width: 800px;
-  height: 320px;
+main section {
+  width: 900px;
+  min-height: 320px;
   max-width: 90%;
   display: flex;
   flex-direction: column;
@@ -124,31 +132,33 @@ section.nopain {
   padding: 12px;
   background-color: rgba(0, 0, 0, 0.5);
 }
-section.nopain h1 {
+main section h1 {
   font-size: 54px;
   color: white;
 }
-section.nopain p {
+main section p {
   font-size: 24px;
   color: #cdcdcd;
 }
-section.nopain button {
+main section button {
   width: 260px;
   margin-top: 40px;
   padding: 12px;
   font-size: 20px;
+  font-weight: 600;
   cursor: pointer;
   border: none;
   outline: none;
-  background-color: var(--cor-laranja-2);
-  color: white;
+  background-color: var(--cor-laranja);
+  color: var(--cor-preto);
+  /* white;*/
   text-transform: uppercase;
   transition: all 0.4s;
 }
-section.nopain button:hover {
+main section button:hover {
   filter: brightness(0.8);
 }
-section.nopain button:active {
+main section button:active {
   transform: translate(2px, 2px);
 }
 section.menu-mobile {
@@ -175,6 +185,14 @@ section.menu-mobile nav.mobile a {
 section.menu-mobile nav.mobile a:hover {
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
+}
+.social {
+  padding-top: 24px;
+  display: flex;
+  gap: 18px;
+}
+.title i {
+  margin: 12px 0;
 }
 section.hidden {
   display: none;

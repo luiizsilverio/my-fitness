@@ -7,5 +7,5 @@ export var Telas;
     Telas[Telas["TREINOS"] = 4] = "TREINOS";
     Telas[Telas["EXERCICIOS"] = 5] = "EXERCICIOS";
     Telas[Telas["CLIENTES"] = 6] = "CLIENTES";
-    Telas[Telas["LOGIN"] = 9] = "LOGIN";
+    Telas[Telas["LOGIN"] = 7] = "LOGIN";
 })(Telas || (Telas = {}));
