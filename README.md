@@ -8,7 +8,12 @@ Possui menu responsivo.
 Aplicação disponível [aqui](https://luiizsilverio.github.io/my-fitness/app/dist/index.html).
 
 
-![](https://github.com/luiizsilverio/my-fitness/blob/master/assets/tela1.png)
-![](https://github.com/luiizsilverio/my-fitness/blob/master/assets/tela2.png)
-![](https://github.com/luiizsilverio/my-fitness/blob/master/assets/tela3.png)
-
+<table>
+  <tr>
+    <td><img src="https://github.com/luiizsilverio/my-fitness/blob/master/assets/tela1.png" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/luiizsilverio/my-fitness/blob/master/assets/tela2.png" /></td>
+    <td><img src="https://github.com/luiizsilverio/my-fitness/blob/master/assets/tela3.png" /></td>
+  </tr>
+</table>
