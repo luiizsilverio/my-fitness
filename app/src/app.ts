@@ -1,10 +1,15 @@
 import { Telas } from "./enums/telas.js";
+import { AuthController } from "./controllers/auth-controller.js";
+import config from './config.js';
 
 const btnMenu = document.querySelector('.fa-bars');
 const menuMobile = document.querySelector('nav.mobile');
 const opcMenu = document.querySelectorAll('nav a');
-const btnLogin = document.querySelector('.user a');
+const btnLogin = document.querySelector('section.user');
 const mainSections = document.querySelectorAll('main section');
+const userSpan = document.querySelector('section.user span');
+
+const authController = new AuthController();
 
 let telaAtual = Telas.INICIO;
 
@@ -51,4 +56,24 @@ opcMenu.forEach(opcao => {
   opcao.addEventListener('click', (e) => MudaTela(e));
 })
 
-btnLogin.addEventListener('click', (e) => MudaTela(e));
+btnLogin.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  authController.login('sarinha', '123')
+
+  setTimeout(() => {
+    if (authController.logado()) {
+      userSpan.textContent = authController.userName;
+    } else {
+      userSpan.textContent = 'Entrar';
+    }
+    MudaTela(e);
+  }, 200);
+
+})
+
+
+// On Load
+if (authController.logado()) {
+  userSpan.textContent = authController.userName;
+}
