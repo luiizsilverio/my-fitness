@@ -7,6 +7,9 @@
 :root {
   --cor-laranja: #ffa500;
   --cor-laranja-2: #e99700;
+  --cor-verde: #4ece5f;
+  --cor-azul: #7c84f1;
+  --cor-vermelho: #ca4b4b;
   --cor-preto: #0e0d0d;
   --altura-header: 70px;
 }
@@ -149,6 +152,10 @@ main section {
   padding: 12px;
   background-color: rgba(0, 0, 0, 0.5);
 
+  &.login {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
   h1 {
     font-size: 54px;
     color: white;
@@ -161,8 +168,9 @@ main section {
 
   button {
     width: 260px;
-    margin-top: 40px;
+    margin-top: 30px;
     padding: 12px;
+    font-family: Nunito, sans-serif;
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
@@ -178,6 +186,15 @@ main section {
     }
     &:active {
       transform: translate(2px, 2px);
+    }
+
+    &#btn-login {
+      background-color: var(--cor-azul);
+      color: white;
+    }
+    &#btn-logout {
+      background-color: var(--cor-vermelho);
+      color: white;
     }
   }
 }
@@ -208,6 +225,48 @@ section.menu-mobile {
       }
     }
   }
+}
+
+form.login {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  padding-bottom: 28px;
+
+  legend {
+    font-size: 48px;
+    font-family: Montserrat, sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+    padding: 0 12px;
+  }
+
+  label {
+    align-self: flex-start;
+    font-family: Nunito, sans-serif;
+  }
+
+  input {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    outline-color: var(--cor-laranja);
+    font-family: Nunito, sans-serif;
+
+    &#name {
+      text-transform: uppercase;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 18px;
+
+  width: 100%;
+  max-width: 500px;
 }
 
 .social {

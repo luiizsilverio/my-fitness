@@ -40,7 +40,6 @@ export class AuthController {
       }
 
       const data = await response.json();
-
       this.user_id = data.id;
       this.username = data.name;
       this.email = data.email;
