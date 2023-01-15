@@ -23,7 +23,14 @@ export class AuthController {
                 'Authorization': `Bearer ${this.token}`
             }
         })
-            .then(response => response.json())
+            .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            else {
+                throw Error(`Erro de Autenticação (${response.statusText})`);
+            }
+        })
             .then((data) => {
             this.user_id = data.id;
             this.username = data.name;
@@ -31,7 +38,7 @@ export class AuthController {
             this.salvaDados();
         })
             .catch(error => {
-            console.log('Erro ao buscar dados do usuário **', error);
+            console.log(error);
             this.limpa();
         });
     }
@@ -63,11 +70,11 @@ export class AuthController {
             }
         })
             .then(response => {
-            if (!response.ok) {
-                throw Error(`Erro de Autenticação (${response.statusText})`);
+            if (response.ok) {
+                return response.json();
             }
             else {
-                return response.json();
+                throw Error(`Erro de Autenticação (${response.statusText})`);
             }
         })
             .then(data => {

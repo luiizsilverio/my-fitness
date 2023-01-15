@@ -61,14 +61,14 @@ btnLogin.addEventListener('click', (e) => {
 
   authController.login('sarinha', '123')
 
-  setTimeout(() => {
+  // setTimeout(() => {
     if (authController.logado()) {
       userSpan.textContent = authController.userName;
     } else {
       userSpan.textContent = 'Entrar';
     }
     MudaTela(e);
-  }, 200);
+  // }, 200);
 
 })
 
