@@ -26,30 +26,30 @@ export class AuthController {
     return this.username;
   }
 
-  private getUser(id: number) {
-    fetch(`${config.BASE_URL}/users/${id}`, {
-      method: 'GET',
-      headers: { // headers opcional, somente se for enviar body
-        'Authorization': `Bearer ${this.token}`
-      }
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json()
-      } else {
+  private async getUser(id: number) {
+    try {
+      const response = await fetch(`${config.BASE_URL}/users/${id}`, {
+        method: 'GET',
+        headers: { // headers opcional, somente se for enviar body
+          'Authorization': `Bearer ${this.token}`
+        }
+      });
+
+      if (!response.ok) {
         throw Error(`Erro de Autenticação (${response.statusText})`);
       }
-    })
-    .then((data) => {
+
+      const data = await response.json();
+
       this.user_id = data.id;
       this.username = data.name;
       this.email = data.email;
       this.salvaDados();
-    })
-    .catch(error => {
+
+    } catch(error) {
       console.log(error);
       this.limpa();
-    })
+    }
   }
 
   private limpa() {
@@ -71,32 +71,32 @@ export class AuthController {
     return this.token && this.user_id > 0;
   }
 
-  public login(username: string, password: string) {
-    fetch(`${config.BASE_URL}/sessions`, {
-      method: 'POST',
-      body: JSON.stringify({
-        username,
-        password
-      }),
-      headers: { // headers opcional, somente se for enviar body
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json()
-      } else {
+  public async login(username: string, password: string) {
+    try {
+      const response = await fetch(`${config.BASE_URL}/sessions`, {
+        method: 'POST',
+        body: JSON.stringify({
+          username,
+          password
+        }),
+        headers: { // headers opcional, somente se for enviar body
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
         throw Error(`Erro de Autenticação (${response.statusText})`);
       }
-    })
-    .then(data => {
+
+      const data = await response.json();
       this.token = data.token;
-      this.getUser(data.uid);
-    })
-    .catch(error => {
+      await this.getUser(data.uid);
+      console.log('login ok');
+    }
+    catch (error) {
       console.log(error);
       this.limpa();
-    })
+    }
   }
 
 }

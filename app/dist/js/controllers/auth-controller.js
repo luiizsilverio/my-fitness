@@ -1,3 +1,12 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import config from '../config.js';
 export class AuthController {
     constructor() {
@@ -17,29 +26,27 @@ export class AuthController {
         return this.username;
     }
     getUser(id) {
-        fetch(`${config.BASE_URL}/users/${id}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${this.token}`
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield fetch(`${config.BASE_URL}/users/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${this.token}`
+                    }
+                });
+                if (!response.ok) {
+                    throw Error(`Erro de Autenticação (${response.statusText})`);
+                }
+                const data = yield response.json();
+                this.user_id = data.id;
+                this.username = data.name;
+                this.email = data.email;
+                this.salvaDados();
             }
-        })
-            .then(response => {
-            if (response.ok) {
-                return response.json();
+            catch (error) {
+                console.log(error);
+                this.limpa();
             }
-            else {
-                throw Error(`Erro de Autenticação (${response.statusText})`);
-            }
-        })
-            .then((data) => {
-            this.user_id = data.id;
-            this.username = data.name;
-            this.email = data.email;
-            this.salvaDados();
-        })
-            .catch(error => {
-            console.log(error);
-            this.limpa();
         });
     }
     limpa() {
@@ -59,31 +66,30 @@ export class AuthController {
         return this.token && this.user_id > 0;
     }
     login(username, password) {
-        fetch(`${config.BASE_URL}/sessions`, {
-            method: 'POST',
-            body: JSON.stringify({
-                username,
-                password
-            }),
-            headers: {
-                'Content-Type': 'application/json'
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield fetch(`${config.BASE_URL}/sessions`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        username,
+                        password
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    throw Error(`Erro de Autenticação (${response.statusText})`);
+                }
+                const data = yield response.json();
+                this.token = data.token;
+                yield this.getUser(data.uid);
+                console.log('login ok');
             }
-        })
-            .then(response => {
-            if (response.ok) {
-                return response.json();
+            catch (error) {
+                console.log(error);
+                this.limpa();
             }
-            else {
-                throw Error(`Erro de Autenticação (${response.statusText})`);
-            }
-        })
-            .then(data => {
-            this.token = data.token;
-            this.getUser(data.uid);
-        })
-            .catch(error => {
-            console.log(error);
-            this.limpa();
         });
     }
 }

@@ -56,20 +56,18 @@ opcMenu.forEach(opcao => {
   opcao.addEventListener('click', (e) => MudaTela(e));
 })
 
-btnLogin.addEventListener('click', (e) => {
+btnLogin.addEventListener('click', async (e) => {
   e.preventDefault();
 
-  authController.login('sarinha', '123')
+  await authController.login('sarinha', '123');
 
-  // setTimeout(() => {
-    if (authController.logado()) {
-      userSpan.textContent = authController.userName;
-    } else {
-      userSpan.textContent = 'Entrar';
-    }
-    MudaTela(e);
-  // }, 200);
+  if (authController.logado()) {
+    userSpan.textContent = authController.userName;
+  } else {
+    userSpan.textContent = 'Entrar';
+  }
 
+  MudaTela(e);
 })
 
 
