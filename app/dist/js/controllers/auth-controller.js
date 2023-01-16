@@ -45,11 +45,11 @@ export class AuthController {
             }
             catch (error) {
                 console.log(error);
-                this.limpa();
+                this.logout();
             }
         });
     }
-    limpa() {
+    logout() {
         localStorage.removeItem('MyFitness.auth');
         this.token = '';
         this.user_id = 0;
@@ -88,7 +88,7 @@ export class AuthController {
             }
             catch (error) {
                 console.log(error);
-                this.limpa();
+                this.logout();
             }
         });
     }

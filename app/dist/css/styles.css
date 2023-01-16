@@ -227,9 +227,6 @@ form.login input {
   outline-color: var(--cor-laranja);
   font-family: Nunito, sans-serif;
 }
-form.login input#name {
-  text-transform: uppercase;
-}
 .actions {
   display: flex;
   gap: 18px;

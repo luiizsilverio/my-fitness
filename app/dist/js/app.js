@@ -12,17 +12,19 @@ import { AuthController } from "./controllers/auth-controller.js";
 const btnMenu = document.querySelector('.fa-bars');
 const menuMobile = document.querySelector('nav.mobile');
 const opcMenu = document.querySelectorAll('nav a');
-const btnLogin = document.querySelector('section.user');
 const mainSections = document.querySelectorAll('main section');
+const btnLogin = document.querySelector('section.user');
 const userSpan = document.querySelector('section.user span');
+const btnSair = document.querySelector('#btn-logout');
 const authController = new AuthController();
 let telaAtual = Telas.INICIO;
-function MudaTela(e) {
-    let tela = e.target.dataset['tela'];
+function MudaTela(ev) {
+    var element = ev.target;
+    const tela = element.dataset['tela'];
     if (!tela)
         return;
-    e.preventDefault();
-    telaAtual = tela;
+    ev.preventDefault();
+    telaAtual = Number(tela);
     opcMenu.forEach(opcao => {
         if (opcao.getAttribute('data-tela') !== tela) {
             opcao.classList.remove('tela-atual');
@@ -37,6 +39,24 @@ function MudaTela(e) {
     mainSections[telaAtual].classList.remove('hidden');
     menuMobile.classList.remove('show-menu');
 }
+function login(e) {
+    return __awaiter(this, void 0, void 0, function* () {
+        e.preventDefault();
+        yield authController.login('sarinha', '123');
+        if (authController.logado()) {
+            userSpan.textContent = authController.userName;
+        }
+        else {
+            userSpan.textContent = 'Entrar';
+        }
+        MudaTela(e);
+    });
+}
+function logout(e) {
+    authController.logout();
+    userSpan.textContent = 'Entrar';
+    location.reload();
+}
 btnMenu.addEventListener('click', (e) => {
     e.preventDefault();
     menuMobile.classList.toggle('show-menu');
@@ -44,17 +64,10 @@ btnMenu.addEventListener('click', (e) => {
 opcMenu.forEach(opcao => {
     opcao.addEventListener('click', (e) => MudaTela(e));
 });
-btnLogin.addEventListener('click', (e) => __awaiter(void 0, void 0, void 0, function* () {
-    e.preventDefault();
-    yield authController.login('sarinha', '123');
-    if (authController.logado()) {
-        userSpan.textContent = authController.userName;
-    }
-    else {
-        userSpan.textContent = 'Entrar';
-    }
-    MudaTela(e);
-}));
+btnLogin.addEventListener('click', (e) => login(e));
+userSpan.addEventListener('click', (e) => login(e));
+console.log(btnSair);
+btnSair.addEventListener('click', logout);
 if (authController.logado()) {
     userSpan.textContent = authController.userName;
 }

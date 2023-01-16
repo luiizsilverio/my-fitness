@@ -5,21 +5,26 @@ import config from './config.js';
 const btnMenu = document.querySelector('.fa-bars');
 const menuMobile = document.querySelector('nav.mobile');
 const opcMenu = document.querySelectorAll('nav a');
-const btnLogin = document.querySelector('section.user');
 const mainSections = document.querySelectorAll('main section');
+const btnLogin = document.querySelector('section.user');
 const userSpan = document.querySelector('section.user span');
+const btnSair = document.querySelector('#btn-logout');
 
 const authController = new AuthController();
 
 let telaAtual = Telas.INICIO;
 
-function MudaTela(e) {
-  let tela = e.target.dataset['tela'];
+function MudaTela(ev: Event): void {
+  var element = ev.target as HTMLElement;
+
+  // const tela = element.getAttribute('data-tela');
+  const tela = element.dataset['tela'];
+
   if (!tela) return;
 
-  e.preventDefault();
+  ev.preventDefault();
 
-  telaAtual = tela;
+  telaAtual = Number(tela);
 
   // Mostra a opção do menu selecionada com cor laranja
   opcMenu.forEach(opcao => {
@@ -29,8 +34,6 @@ function MudaTela(e) {
       opcao.classList.add('tela-atual');
     }
   })
-
-  // e.target.classList.add('tela-atual');
 
   // Esconde todas as main sections
   // for (const [index, section] of mainSections.entries()) {
@@ -45,18 +48,8 @@ function MudaTela(e) {
   menuMobile.classList.remove('show-menu');
 }
 
-// Event Listeners
 
-btnMenu.addEventListener('click', (e) => {
-  e.preventDefault();
-  menuMobile.classList.toggle('show-menu');
-})
-
-opcMenu.forEach(opcao => {
-  opcao.addEventListener('click', (e) => MudaTela(e));
-})
-
-btnLogin.addEventListener('click', async (e) => {
+async function login (e: Event): Promise<void> {
   e.preventDefault();
 
   await authController.login('sarinha', '123');
@@ -68,10 +61,36 @@ btnLogin.addEventListener('click', async (e) => {
   }
 
   MudaTela(e);
+}
+
+
+function logout (e: Event): void {
+  authController.logout();
+  userSpan.textContent = 'Entrar';
+  location.reload();
+  // location.href = "/";
+}
+
+
+// Event Listeners
+
+btnMenu.addEventListener('click', (e) => {
+  e.preventDefault();
+  menuMobile.classList.toggle('show-menu');
 })
 
+opcMenu.forEach(opcao => {
+  opcao.addEventListener('click', (e) => MudaTela(e));
+})
+
+btnLogin.addEventListener('click', (e) => login(e));
+userSpan.addEventListener('click', (e) => login(e));
+
+console.log(btnSair)
+btnSair.addEventListener('click', logout);
 
 // On Load
+
 if (authController.logado()) {
   userSpan.textContent = authController.userName;
 }

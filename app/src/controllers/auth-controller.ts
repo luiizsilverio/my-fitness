@@ -26,7 +26,7 @@ export class AuthController {
     return this.username;
   }
 
-  private async getUser(id: number) {
+  private async getUser(id: number): Promise<void> {
     try {
       const response = await fetch(`${config.BASE_URL}/users/${id}`, {
         method: 'GET',
@@ -47,17 +47,17 @@ export class AuthController {
 
     } catch(error) {
       console.log(error);
-      this.limpa();
+      this.logout();
     }
   }
 
-  private limpa() {
+  public logout(): void {
     localStorage.removeItem('MyFitness.auth');
     this.token = '';
     this.user_id = 0;
   }
 
-  private salvaDados() {
+  private salvaDados(): void {
     localStorage.setItem('MyFitness.auth', JSON.stringify({
       token: this.token,
       user_id: this.user_id,
@@ -94,7 +94,7 @@ export class AuthController {
     }
     catch (error) {
       console.log(error);
-      this.limpa();
+      this.logout();
     }
   }
 
