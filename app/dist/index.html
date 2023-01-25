@@ -16,7 +16,7 @@
     <header>
       <section class="logo">
         <a href="#">
-          <img src="assets/icon.svg" alt="Logo My-Fitness">
+          <img src="assets/icon.svg" alt="Logo My-Fitness" data-tela="0">
         </a>
         <span>MY-FITNESS</span>
       </section>
@@ -56,6 +56,10 @@
     <div class="bg-image"></div>
 
     <main>
+      <div class="mensagem hidden">
+        <div class="msg-conteudo">Bem-vindo(a), Luiz</div>
+      </div>
+
       <section class="home">
         <h1>NO PAIN NO GAIN</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis inventore porro asperiores consectetur. Pariatur voluptates</p>
@@ -117,8 +121,8 @@
           <legend>Login</legend>
           <label for="name">Nome do Usuário</label>
           <input type="text" id="name" placeholder="Nome" required autofocus>
-          <label for="email">E-Mail do Usuário</label>
-          <input type="email" id="email" placeholder="E-mail" required>
+          <!-- <label for="email">E-Mail do Usuário</label> -->
+          <!-- <input type="email" id="email" placeholder="E-mail" required> -->
           <label for="email">Senha</label>
           <input type="password" id="password" placeholder="Senha" required>
           <div class="actions">

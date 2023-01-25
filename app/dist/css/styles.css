@@ -6,9 +6,9 @@
 :root {
   --cor-laranja: #ffa500;
   --cor-laranja-2: #e99700;
-  --cor-verde: #4ece5f;
-  --cor-azul: #7c84f1;
-  --cor-vermelho: #ca4b4b;
+  --cor-verde: #22C55E;
+  --cor-azul: #60A5FA;
+  --cor-vermelho: #DC2626;
   --cor-preto: #0e0d0d;
   --altura-header: 70px;
 }
@@ -134,6 +134,9 @@ main section {
   text-align: center;
   padding: 12px;
   background-color: rgba(0, 0, 0, 0.5);
+  animation-name: crescer;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
 }
 main section.login {
   background-color: rgba(0, 0, 0, 0.6);
@@ -185,17 +188,21 @@ section.menu-mobile nav.mobile {
   display: flex;
   flex-direction: column;
   width: 340px;
-  height: 340px;
+  height: 360px;
   position: absolute;
   right: 8px;
   top: calc(8px + var(--altura-header));
   padding: 12px 0;
   padding-top: 18px;
   background-color: var(--cor-laranja-2);
+  animation-name: show-menu;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
 }
 section.menu-mobile nav.mobile a {
-  padding: 8px 12px;
+  padding: 6px 18px;
   transition: all 0.3s;
+  font-size: 20px;
 }
 section.menu-mobile nav.mobile a:hover {
   background-color: rgba(0, 0, 0, 0.7);
@@ -241,8 +248,34 @@ form.login input {
 .title i {
   margin: 12px 0;
 }
-section.hidden {
+section.hidden,
+div.hidden {
   display: none;
+}
+.mensagem {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  right: 24px;
+  background-color: red;
+  animation-name: crescer;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+}
+.mensagem .msg-conteudo {
+  margin: 0 auto;
+  max-width: 800px;
+  text-align: center;
+  background: var(--cor-verde);
+  padding: 24px 0;
+  font-size: 20px;
+  color: white;
+}
+.mensagem.verde .msg-conteudo {
+  background: var(--cor-verde);
+}
+.mensagem.vermelho .msg-conteudo {
+  background: #F87171;
 }
 @media (max-width: 600px) {
   section.nopain {
@@ -279,5 +312,25 @@ section.hidden {
   }
   header section.menu-mobile nav.mobile.show-menu {
     display: flex;
+  }
+}
+@keyframes show-menu {
+  from {
+    opacity: 0;
+    height: 0;
+  }
+  to {
+    opacity: 0.97;
+    height: 360px;
+  }
+}
+@keyframes crescer {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

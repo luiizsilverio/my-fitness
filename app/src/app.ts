@@ -1,6 +1,5 @@
 import { Telas } from "./enums/telas.js";
 import { AuthController } from "./controllers/auth-controller.js";
-import config from './config.js';
 
 const btnMenu = document.querySelector('.fa-bars');
 const menuMobile = document.querySelector('nav.mobile');
@@ -9,6 +8,8 @@ const mainSections = document.querySelectorAll('main section');
 const btnLogin = document.querySelector('section.user');
 const userSpan = document.querySelector('section.user span');
 const btnSair = document.querySelector('#btn-logout');
+const btnLogo = document.querySelector('section.logo');
+const formLogin = document.querySelector('form.login');
 
 const authController = new AuthController();
 
@@ -52,7 +53,11 @@ function MudaTela(ev: Event): void {
 async function login (e: Event): Promise<void> {
   e.preventDefault();
 
-  await authController.login('sarinha', '123');
+  const name = formLogin['name'].value;
+  const password = formLogin['password'].value;
+
+  await authController.login(name, password);
+  // await authController.login('sarinha', '123');
 
   if (authController.logado()) {
     userSpan.textContent = authController.userName;
@@ -60,7 +65,7 @@ async function login (e: Event): Promise<void> {
     userSpan.textContent = 'Entrar';
   }
 
-  MudaTela(e);
+  location.reload();
 }
 
 
@@ -68,7 +73,6 @@ function logout (e: Event): void {
   authController.logout();
   userSpan.textContent = 'Entrar';
   location.reload();
-  // location.href = "/";
 }
 
 
@@ -83,11 +87,11 @@ opcMenu.forEach(opcao => {
   opcao.addEventListener('click', (e) => MudaTela(e));
 })
 
-btnLogin.addEventListener('click', (e) => login(e));
-userSpan.addEventListener('click', (e) => login(e));
-
-console.log(btnSair)
+btnLogin.addEventListener('click', (e) => MudaTela(e));
+userSpan.addEventListener('click', (e) => MudaTela(e));
 btnSair.addEventListener('click', logout);
+btnLogo.addEventListener('click', (e) => MudaTela(e));
+formLogin.addEventListener('submit', (e) => login(e));
 
 // On Load
 

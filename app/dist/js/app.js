@@ -16,6 +16,8 @@ const mainSections = document.querySelectorAll('main section');
 const btnLogin = document.querySelector('section.user');
 const userSpan = document.querySelector('section.user span');
 const btnSair = document.querySelector('#btn-logout');
+const btnLogo = document.querySelector('section.logo');
+const formLogin = document.querySelector('form.login');
 const authController = new AuthController();
 let telaAtual = Telas.INICIO;
 function MudaTela(ev) {
@@ -42,14 +44,16 @@ function MudaTela(ev) {
 function login(e) {
     return __awaiter(this, void 0, void 0, function* () {
         e.preventDefault();
-        yield authController.login('sarinha', '123');
+        const name = formLogin['name'].value;
+        const password = formLogin['password'].value;
+        yield authController.login(name, password);
         if (authController.logado()) {
             userSpan.textContent = authController.userName;
         }
         else {
             userSpan.textContent = 'Entrar';
         }
-        MudaTela(e);
+        location.reload();
     });
 }
 function logout(e) {
@@ -64,10 +68,11 @@ btnMenu.addEventListener('click', (e) => {
 opcMenu.forEach(opcao => {
     opcao.addEventListener('click', (e) => MudaTela(e));
 });
-btnLogin.addEventListener('click', (e) => login(e));
-userSpan.addEventListener('click', (e) => login(e));
-console.log(btnSair);
+btnLogin.addEventListener('click', (e) => MudaTela(e));
+userSpan.addEventListener('click', (e) => MudaTela(e));
 btnSair.addEventListener('click', logout);
+btnLogo.addEventListener('click', (e) => MudaTela(e));
+formLogin.addEventListener('submit', (e) => login(e));
 if (authController.logado()) {
     userSpan.textContent = authController.userName;
 }

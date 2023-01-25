@@ -7,9 +7,9 @@
 :root {
   --cor-laranja: #ffa500;
   --cor-laranja-2: #e99700;
-  --cor-verde: #4ece5f;
-  --cor-azul: #7c84f1;
-  --cor-vermelho: #ca4b4b;
+  --cor-verde: #22C55E;
+  --cor-azul: #60A5FA;
+  --cor-vermelho: #DC2626;
   --cor-preto: #0e0d0d;
   --altura-header: 70px;
 }
@@ -152,6 +152,10 @@ main section {
   padding: 12px;
   background-color: rgba(0, 0, 0, 0.5);
 
+  animation-name: crescer;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+
   &.login {
     background-color: rgba(0, 0, 0, 0.6);
   }
@@ -207,17 +211,23 @@ section.menu-mobile {
     display: flex;
     flex-direction: column;
     width: 340px;
-    height: 340px;
+    height: 360px;
     position: absolute;
     right: 8px;
     top: calc(8px + var(--altura-header));
     padding: 12px 0;
     padding-top: 18px;
     background-color: var(--cor-laranja-2);
+    // opacity: 0.98;
+
+    animation-name: show-menu;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
 
     a {
-      padding: 8px 12px;
+      padding: 6px 18px;
       transition: all .3s;
+      font-size: 20px;
 
       &:hover {
         background-color: rgba(0, 0, 0, 0.7);
@@ -280,8 +290,38 @@ form.login {
   }
 }
 
-section.hidden {
+section.hidden, div.hidden {
   display: none;
+}
+
+.mensagem {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  right: 24px;
+  background-color: red;
+
+  animation-name: crescer;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+
+  .msg-conteudo {
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: center;
+    background: var(--cor-verde);
+    padding: 24px 0;
+    font-size: 20px;
+    color: white;
+  }
+
+  &.verde .msg-conteudo {
+    background: var(--cor-verde);
+  }
+
+  &.vermelho .msg-conteudo {
+    background: #F87171;
+  }
 }
 
 // MEDIA QUERIES -----------------------------------------------------
@@ -332,5 +372,29 @@ section.hidden {
         display: flex;
       }
     }
+  }
+}
+
+// ANIMATIONS --------------------------------------------------
+
+@keyframes show-menu {
+  from {
+    opacity: 0;
+    height: 0;
+  }
+  to {
+    opacity: 0.97;
+    height: 360px;
+  }
+}
+
+@keyframes crescer {
+  from {
+    opacity: 0;
+    transform: scale(.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
