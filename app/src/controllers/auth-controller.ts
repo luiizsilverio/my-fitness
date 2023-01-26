@@ -71,31 +71,25 @@ export class AuthController {
   }
 
   public async login(username: string, password: string) {
-    try {
-      const response = await fetch(`${config.BASE_URL}/sessions`, {
-        method: 'POST',
-        body: JSON.stringify({
-          username,
-          password
-        }),
-        headers: { // headers opcional, somente se for enviar body
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        throw Error(`Erro de Autenticação (${response.statusText})`);
+    const response = await fetch(`${config.BASE_URL}/sessions`, {
+      method: 'POST',
+      body: JSON.stringify({
+        username,
+        password
+      }),
+      headers: { // headers opcional, somente se for enviar body
+        'Content-Type': 'application/json'
       }
+    });
 
-      const data = await response.json();
-      this.token = data.token;
-      await this.getUser(data.uid);
-      console.log('login ok');
+    if (!response.ok) {
+      throw Error(`Erro de Autenticação (${response.statusText})`);
     }
-    catch (error) {
-      console.log(error);
-      this.logout();
-    }
+
+    const data = await response.json();
+    this.token = data.token;
+    await this.getUser(data.uid);
+    console.log('login ok');
   }
 
 }

@@ -158,6 +158,14 @@ main section {
 
   &.login {
     background-color: rgba(0, 0, 0, 0.6);
+
+    a {
+      text-decoration: none;
+      color: var(--cor-laranja-2);
+      font-family: Nunito, sans-serif;
+      font-size: 14px;
+      margin-top: 18px;
+    }
   }
 
   h1 {
@@ -196,7 +204,7 @@ main section {
       background-color: var(--cor-azul);
       color: white;
     }
-    &#btn-logout {
+    &.btn-logout {
       background-color: var(--cor-vermelho);
       color: white;
     }
@@ -218,6 +226,7 @@ section.menu-mobile {
     padding: 12px 0;
     padding-top: 18px;
     background-color: var(--cor-laranja-2);
+    overflow-y: hidden;
     // opacity: 0.98;
 
     animation-name: show-menu;
@@ -237,7 +246,7 @@ section.menu-mobile {
   }
 }
 
-form.login {
+form.login, form.signup {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -281,16 +290,11 @@ form.login {
   gap: 18px;
 }
 
-.title {
-  // display: flex;
-  // align-items: center;
-  // gap: 18px;
-  i {
-    margin: 12px 0;
-  }
+.title i {
+  margin: 12px 0;
 }
 
-section.hidden, div.hidden {
+section.hidden, div.hidden, form.hidden {
   display: none;
 }
 
@@ -299,7 +303,6 @@ section.hidden, div.hidden {
   top: 18px;
   left: 24px;
   right: 24px;
-  background-color: red;
 
   animation-name: crescer;
   animation-duration: 200ms;

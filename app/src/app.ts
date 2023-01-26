@@ -1,5 +1,6 @@
 import { Telas } from "./enums/telas.js";
 import { AuthController } from "./controllers/auth-controller.js";
+import { AppController } from "./controllers/app-controller.js";
 
 const btnMenu = document.querySelector('.fa-bars');
 const menuMobile = document.querySelector('nav.mobile');
@@ -7,10 +8,14 @@ const opcMenu = document.querySelectorAll('nav a');
 const mainSections = document.querySelectorAll('main section');
 const btnLogin = document.querySelector('section.user');
 const userSpan = document.querySelector('section.user span');
-const btnSair = document.querySelector('#btn-logout');
+const btnSair = document.querySelector('.btn-logout');
 const btnLogo = document.querySelector('section.logo');
+const divMensagem = document.querySelector('.mensagem');
 const formLogin = document.querySelector('form.login');
+const formSignUp = document.querySelector('form.signup');
+const linkSignUp = document.querySelector('form.login a');
 
+const appController = new AppController();
 const authController = new AuthController();
 
 let telaAtual = Telas.INICIO;
@@ -42,11 +47,41 @@ function MudaTela(ev: Event): void {
     section.classList.add('hidden');
   }
 
+  // Esconde o formulário de SignUp
+  // formLogin.classList.remove('hidden');
+  // formSignUp.classList.add('hidden');
+
   // Exibe a main section referente à opção selecionada
   mainSections[telaAtual].classList.remove('hidden');
 
   // Esconde o menu popup
   menuMobile.classList.remove('show-menu');
+}
+
+
+function showMessage(texto: string): void {
+  const divFilha = divMensagem.firstElementChild;
+
+  divFilha.textContent = texto;
+  divMensagem.classList.add('verde');
+  divMensagem.classList.remove('hidden', 'vermelho');
+
+  setTimeout(() => {
+    divMensagem.classList.add('hidden');
+  }, 2000);
+}
+
+
+function showError(texto: string): void {
+  const divFilha = divMensagem.firstElementChild;
+
+  divFilha.textContent = texto;
+  divMensagem.classList.add('vermelho');
+  divMensagem.classList.remove('hidden', 'verde');
+
+  setTimeout(() => {
+    divMensagem.classList.add('hidden');
+  }, 3000);
 }
 
 
@@ -56,8 +91,16 @@ async function login (e: Event): Promise<void> {
   const name = formLogin['name'].value;
   const password = formLogin['password'].value;
 
-  await authController.login(name, password);
-  // await authController.login('sarinha', '123');
+  try {
+    await authController.login(name, password); // 'sarinha', '123'
+    showMessage(`Seja Bem-Vindo(a), ${name}`)
+    setTimeout(() => location.reload(), 2000);
+  }
+  catch (erro) {
+    authController.logout();
+    formLogin['name'].focus();
+    showError(erro);
+  }
 
   if (authController.logado()) {
     userSpan.textContent = authController.userName;
@@ -65,7 +108,7 @@ async function login (e: Event): Promise<void> {
     userSpan.textContent = 'Entrar';
   }
 
-  location.reload();
+  // location.reload();
 }
 
 
@@ -87,11 +130,18 @@ opcMenu.forEach(opcao => {
   opcao.addEventListener('click', (e) => MudaTela(e));
 })
 
-btnLogin.addEventListener('click', (e) => MudaTela(e));
+btnLogin.addEventListener('click', (e) => {
+  appController.showSignInForm();
+  // MudaTela(e);
+});
+
 userSpan.addEventListener('click', (e) => MudaTela(e));
 btnSair.addEventListener('click', logout);
 btnLogo.addEventListener('click', (e) => MudaTela(e));
 formLogin.addEventListener('submit', (e) => login(e));
+
+linkSignUp.addEventListener('click', () => console.log('signup')); //authController.showSignUpForm());
+
 
 // On Load
 

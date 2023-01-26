@@ -57,7 +57,7 @@
 
     <main>
       <div class="mensagem hidden">
-        <div class="msg-conteudo">Bem-vindo(a), Luiz</div>
+        <div class="msg-conteudo"></div>
       </div>
 
       <section class="home">
@@ -121,16 +121,17 @@
           <legend>Login</legend>
           <label for="name">Nome do Usuário</label>
           <input type="text" id="name" placeholder="Nome" required autofocus>
-          <!-- <label for="email">E-Mail do Usuário</label> -->
-          <!-- <input type="email" id="email" placeholder="E-mail" required> -->
-          <label for="email">Senha</label>
+          <label for="password">Senha</label>
           <input type="password" id="password" placeholder="Senha" required>
           <div class="actions">
             <button type="submit" id="btn-login">Entrar</button>
-            <button type="button" id="btn-logout">Sair</button>
+            <button type="button" class="btn-logout">Sair</button>
           </div>
+          <a href="#">Não possui uma conta? Cadastre-se AQUI</a>
         </form>
+        <form class="signup hidden"></form>
       </section>
+
     </main>
 
     <script type="module" src="js/app.js"></script>

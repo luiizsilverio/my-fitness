@@ -67,29 +67,23 @@ export class AuthController {
     }
     login(username, password) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield fetch(`${config.BASE_URL}/sessions`, {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        username,
-                        password
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                if (!response.ok) {
-                    throw Error(`Erro de Autenticação (${response.statusText})`);
+            const response = yield fetch(`${config.BASE_URL}/sessions`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    username,
+                    password
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-                const data = yield response.json();
-                this.token = data.token;
-                yield this.getUser(data.uid);
-                console.log('login ok');
+            });
+            if (!response.ok) {
+                throw Error(`Erro de Autenticação (${response.statusText})`);
             }
-            catch (error) {
-                console.log(error);
-                this.logout();
-            }
+            const data = yield response.json();
+            this.token = data.token;
+            yield this.getUser(data.uid);
+            console.log('login ok');
         });
     }
 }

@@ -141,6 +141,13 @@ main section {
 main section.login {
   background-color: rgba(0, 0, 0, 0.6);
 }
+main section.login a {
+  text-decoration: none;
+  color: var(--cor-laranja-2);
+  font-family: Nunito, sans-serif;
+  font-size: 14px;
+  margin-top: 18px;
+}
 main section h1 {
   font-size: 54px;
   color: white;
@@ -175,7 +182,7 @@ main section button#btn-login {
   background-color: var(--cor-azul);
   color: white;
 }
-main section button#btn-logout {
+main section button.btn-logout {
   background-color: var(--cor-vermelho);
   color: white;
 }
@@ -195,6 +202,7 @@ section.menu-mobile nav.mobile {
   padding: 12px 0;
   padding-top: 18px;
   background-color: var(--cor-laranja-2);
+  overflow-y: hidden;
   animation-name: show-menu;
   animation-duration: 200ms;
   animation-fill-mode: forwards;
@@ -208,14 +216,16 @@ section.menu-mobile nav.mobile a:hover {
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
 }
-form.login {
+form.login,
+form.signup {
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 500px;
   padding-bottom: 28px;
 }
-form.login legend {
+form.login legend,
+form.signup legend {
   font-size: 48px;
   font-family: Montserrat, sans-serif;
   text-transform: uppercase;
@@ -223,11 +233,13 @@ form.login legend {
   display: block;
   padding: 0 12px;
 }
-form.login label {
+form.login label,
+form.signup label {
   align-self: flex-start;
   font-family: Nunito, sans-serif;
 }
-form.login input {
+form.login input,
+form.signup input {
   display: inline-block;
   margin-bottom: 12px;
   padding: 8px 12px;
@@ -249,7 +261,8 @@ form.login input {
   margin: 12px 0;
 }
 section.hidden,
-div.hidden {
+div.hidden,
+form.hidden {
   display: none;
 }
 .mensagem {
@@ -257,7 +270,6 @@ div.hidden {
   top: 18px;
   left: 24px;
   right: 24px;
-  background-color: red;
   animation-name: crescer;
   animation-duration: 200ms;
   animation-fill-mode: forwards;
