@@ -1,36 +1,24 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import { Telas } from "./enums/telas.js";
 import { AuthController } from "./controllers/auth-controller.js";
 import { AppController } from "./controllers/app-controller.js";
 const btnMenu = document.querySelector('.fa-bars');
 const menuMobile = document.querySelector('nav.mobile');
 const opcMenu = document.querySelectorAll('nav a');
-const mainSections = document.querySelectorAll('main section');
 const btnLogin = document.querySelector('section.user');
 const userSpan = document.querySelector('section.user span');
 const btnSair = document.querySelector('.btn-logout');
 const btnLogo = document.querySelector('section.logo');
 const divMensagem = document.querySelector('.mensagem');
 const formLogin = document.querySelector('form.login');
-const formSignUp = document.querySelector('form.signup');
-const linkSignUp = document.querySelector('form.login a');
 const appController = new AppController();
 const authController = new AuthController();
 let telaAtual = Telas.INICIO;
 function MudaTela(ev) {
     var element = ev.target;
     const tela = element.dataset['tela'];
+    ev.preventDefault();
     if (!tela)
         return;
-    ev.preventDefault();
     telaAtual = Number(tela);
     opcMenu.forEach(opcao => {
         if (opcao.getAttribute('data-tela') !== tela) {
@@ -40,10 +28,7 @@ function MudaTela(ev) {
             opcao.classList.add('tela-atual');
         }
     });
-    for (const section of mainSections) {
-        section.classList.add('hidden');
-    }
-    mainSections[telaAtual].classList.remove('hidden');
+    appController.render(telaAtual);
     menuMobile.classList.remove('show-menu');
 }
 function showMessage(texto) {
@@ -64,28 +49,26 @@ function showError(texto) {
         divMensagem.classList.add('hidden');
     }, 3000);
 }
-function login(e) {
-    return __awaiter(this, void 0, void 0, function* () {
-        e.preventDefault();
-        const name = formLogin['name'].value;
-        const password = formLogin['password'].value;
-        try {
-            yield authController.login(name, password);
-            showMessage(`Seja Bem-Vindo(a), ${name}`);
-            setTimeout(() => location.reload(), 2000);
-        }
-        catch (erro) {
-            authController.logout();
-            formLogin['name'].focus();
-            showError(erro);
-        }
-        if (authController.logado()) {
-            userSpan.textContent = authController.userName;
-        }
-        else {
-            userSpan.textContent = 'Entrar';
-        }
-    });
+async function login(e) {
+    e.preventDefault();
+    const name = formLogin['name'].value;
+    const password = formLogin['password'].value;
+    try {
+        await authController.login(name, password);
+        showMessage(`Seja Bem-Vindo(a), ${name}`);
+        setTimeout(() => location.reload(), 2000);
+    }
+    catch (erro) {
+        authController.logout();
+        formLogin['name'].focus();
+        showError(erro);
+    }
+    if (authController.logado()) {
+        userSpan.textContent = authController.userName;
+    }
+    else {
+        userSpan.textContent = 'Entrar';
+    }
 }
 function logout(e) {
     authController.logout();
@@ -99,14 +82,11 @@ btnMenu.addEventListener('click', (e) => {
 opcMenu.forEach(opcao => {
     opcao.addEventListener('click', (e) => MudaTela(e));
 });
-btnLogin.addEventListener('click', (e) => {
-    appController.showSignInForm();
-});
+btnLogin.addEventListener('click', (e) => MudaTela(e));
 userSpan.addEventListener('click', (e) => MudaTela(e));
-btnSair.addEventListener('click', logout);
 btnLogo.addEventListener('click', (e) => MudaTela(e));
 formLogin.addEventListener('submit', (e) => login(e));
-linkSignUp.addEventListener('click', () => console.log('signup'));
+btnSair.addEventListener('click', logout);
 if (authController.logado()) {
     userSpan.textContent = authController.userName;
 }

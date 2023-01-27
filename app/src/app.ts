@@ -5,15 +5,13 @@ import { AppController } from "./controllers/app-controller.js";
 const btnMenu = document.querySelector('.fa-bars');
 const menuMobile = document.querySelector('nav.mobile');
 const opcMenu = document.querySelectorAll('nav a');
-const mainSections = document.querySelectorAll('main section');
 const btnLogin = document.querySelector('section.user');
 const userSpan = document.querySelector('section.user span');
 const btnSair = document.querySelector('.btn-logout');
 const btnLogo = document.querySelector('section.logo');
 const divMensagem = document.querySelector('.mensagem');
 const formLogin = document.querySelector('form.login');
-const formSignUp = document.querySelector('form.signup');
-const linkSignUp = document.querySelector('form.login a');
+// const formSignUp = document.querySelector('form.signup');
 
 const appController = new AppController();
 const authController = new AuthController();
@@ -26,9 +24,9 @@ function MudaTela(ev: Event): void {
   // const tela = element.getAttribute('data-tela');
   const tela = element.dataset['tela'];
 
-  if (!tela) return;
-
   ev.preventDefault();
+
+  if (!tela) return;
 
   telaAtual = Number(tela);
 
@@ -41,18 +39,7 @@ function MudaTela(ev: Event): void {
     }
   })
 
-  // Esconde todas as main sections
-  // for (const [index, section] of mainSections.entries()) {
-  for (const section of mainSections) {
-    section.classList.add('hidden');
-  }
-
-  // Esconde o formulário de SignUp
-  // formLogin.classList.remove('hidden');
-  // formSignUp.classList.add('hidden');
-
-  // Exibe a main section referente à opção selecionada
-  mainSections[telaAtual].classList.remove('hidden');
+  appController.render(telaAtual);
 
   // Esconde o menu popup
   menuMobile.classList.remove('show-menu');
@@ -118,7 +105,6 @@ function logout (e: Event): void {
   location.reload();
 }
 
-
 // Event Listeners
 
 btnMenu.addEventListener('click', (e) => {
@@ -130,17 +116,11 @@ opcMenu.forEach(opcao => {
   opcao.addEventListener('click', (e) => MudaTela(e));
 })
 
-btnLogin.addEventListener('click', (e) => {
-  appController.showSignInForm();
-  // MudaTela(e);
-});
-
+btnLogin.addEventListener('click', (e) => MudaTela(e));
 userSpan.addEventListener('click', (e) => MudaTela(e));
-btnSair.addEventListener('click', logout);
 btnLogo.addEventListener('click', (e) => MudaTela(e));
 formLogin.addEventListener('submit', (e) => login(e));
-
-linkSignUp.addEventListener('click', () => console.log('signup')); //authController.showSignUpForm());
+btnSair.addEventListener('click', logout);
 
 
 // On Load

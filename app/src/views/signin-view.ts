@@ -1,31 +1,8 @@
-export class SignInView {
+import { View } from "./view.js";
 
-  protected elemento: HTMLElement;
+export class SignInView extends View {
 
-  constructor(seletor: string) {
-    const elem = document.querySelector(seletor);
-
-    if (elem) {
-      this.elemento = elem as HTMLElement;
-    } else {
-      throw Error(`Seletor ${seletor} não existe no DOM.`);
-    }
-  }
-
-  public update(): void {
-    let template = this.template();
-    this.elemento.innerHTML = template;
-  }
-
-  private esconde_sessoes(): void {
-    const mainSections = document.querySelectorAll('main section');
-
-    for (const section of mainSections) {
-      section.classList.add('hidden');
-    }
-  }
-
-  private template(): string {
+  protected template(): string {
     this.esconde_sessoes();
     this.elemento.classList.remove('hidden');
 

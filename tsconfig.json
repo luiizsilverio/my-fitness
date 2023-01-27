@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-      "target": "ES6",
+      "target": "ES2020",
       "outDir": "app/dist/js",
       "noEmitOnError": true,
       "removeComments": true,
       "noImplicitAny": false,
       "strictNullChecks": false,
-      "experimentalDecorators": false,
+      "experimentalDecorators": true,
       "sourceMap": false,
       "moduleResolution": "node"
     },
