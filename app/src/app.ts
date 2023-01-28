@@ -5,13 +5,12 @@ import { AppController } from "./controllers/app-controller.js";
 const btnMenu = document.querySelector('.fa-bars');
 const menuMobile = document.querySelector('nav.mobile');
 const opcMenu = document.querySelectorAll('nav a');
-const btnLogin = document.querySelector('section.user');
-const userSpan = document.querySelector('section.user span');
 const btnSair = document.querySelector('.btn-logout');
 const btnLogo = document.querySelector('section.logo');
-const divMensagem = document.querySelector('.mensagem');
+
+const btnLogin = document.querySelector('section.user');
+const userSpan = document.querySelector('section.user span');
 const formLogin = document.querySelector('form.login');
-// const formSignUp = document.querySelector('form.signup');
 
 const appController = new AppController();
 const authController = new AuthController();
@@ -28,9 +27,12 @@ function MudaTela(ev: Event): void {
 
   if (!tela) return;
 
+  const disabled = element.classList.contains('isDisabled');
+  if (disabled) return;
+
   telaAtual = Number(tela);
 
-  // Mostra a opção do menu selecionada com cor laranja
+  // Mostra a opção do menu selecionada na cor laranja
   opcMenu.forEach(opcao => {
     if (opcao.getAttribute('data-tela') !== tela) {
       opcao.classList.remove('tela-atual');
@@ -39,6 +41,7 @@ function MudaTela(ev: Event): void {
     }
   })
 
+  // Renderiza a tela selecionada
   appController.render(telaAtual);
 
   // Esconde o menu popup
@@ -46,63 +49,30 @@ function MudaTela(ev: Event): void {
 }
 
 
-function showMessage(texto: string): void {
-  const divFilha = divMensagem.firstElementChild;
+// function logout (e: Event): void {
+//   authController.logout();
+//   userSpan.textContent = 'Entrar';
+//   location.reload();
+// }
 
-  divFilha.textContent = texto;
-  divMensagem.classList.add('verde');
-  divMensagem.classList.remove('hidden', 'vermelho');
 
-  setTimeout(() => {
-    divMensagem.classList.add('hidden');
-  }, 2000);
+function ativa_opcoes(ativa: boolean = true): void {
+  opcMenu.forEach((opcao, index) => {
+    const vtela = opcao.getAttribute('data-tela');
+
+    if ([Telas.TREINOS, Telas.EXERCICIOS, Telas.CLIENTES]
+      .includes(Number(vtela))) {
+        if (ativa) {
+          opcao.classList.remove('isDisabled');
+        } else {
+          opcao.classList.add('isDisabled');
+        }
+      }
+  })
 }
 
-
-function showError(texto: string): void {
-  const divFilha = divMensagem.firstElementChild;
-
-  divFilha.textContent = texto;
-  divMensagem.classList.add('vermelho');
-  divMensagem.classList.remove('hidden', 'verde');
-
-  setTimeout(() => {
-    divMensagem.classList.add('hidden');
-  }, 3000);
-}
-
-
-async function login (e: Event): Promise<void> {
-  e.preventDefault();
-
-  const name = formLogin['name'].value;
-  const password = formLogin['password'].value;
-
-  try {
-    await authController.login(name, password); // 'sarinha', '123'
-    showMessage(`Seja Bem-Vindo(a), ${name}`)
-    setTimeout(() => location.reload(), 2000);
-  }
-  catch (erro) {
-    authController.logout();
-    formLogin['name'].focus();
-    showError(erro);
-  }
-
-  if (authController.logado()) {
-    userSpan.textContent = authController.userName;
-  } else {
-    userSpan.textContent = 'Entrar';
-  }
-
-  // location.reload();
-}
-
-
-function logout (e: Event): void {
-  authController.logout();
-  userSpan.textContent = 'Entrar';
-  location.reload();
+function desativa_opcoes(): void {
+  ativa_opcoes(false);
 }
 
 // Event Listeners
@@ -119,12 +89,17 @@ opcMenu.forEach(opcao => {
 btnLogin.addEventListener('click', (e) => MudaTela(e));
 userSpan.addEventListener('click', (e) => MudaTela(e));
 btnLogo.addEventListener('click', (e) => MudaTela(e));
-formLogin.addEventListener('submit', (e) => login(e));
-btnSair.addEventListener('click', logout);
+formLogin.addEventListener('submit', appController.login);
+btnSair.addEventListener('click', () => appController.logout());
 
 
 // On Load
 
 if (authController.logado()) {
   userSpan.textContent = authController.userName;
+  ativa_opcoes();
+} else {
+  desativa_opcoes();
 }
+
+appController.render(Telas.INICIO);
