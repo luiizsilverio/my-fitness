@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <title>My-Fitness</title>
+</head>
+<body>
+    <header>
+      <section class="logo">
+        <a href="#">
+          <img src="assets/icon.svg" alt="Logo My-Fitness" data-tela="0">
+        </a>
+        <span>MY-FITNESS</span>
+      </section>
+
+      <nav class="menu">
+        <a href="#" class="tela-atual" data-tela="0">Início</a>
+        <a href="#" data-tela="1">Quem somos</a>
+        <a href="#" data-tela="2">Horários</a>
+        <a href="#" data-tela="3">Loja</a>
+        <a href="#" data-tela="4">Treinos</a>
+        <a href="#" data-tela="5">Exercícios</a>
+        <a href="#" data-tela="6">Clientes</a>
+      </nav>
+
+      <section class="user">
+        <a href="#" data-tela="7">
+          <i class="far fa-user" data-tela="7"></i>
+          <span data-tela="7">Entrar</span>
+        </a>
+      </section>
+
+      <section class="menu-mobile hidden">
+        <a href="#"><i class="fas fa-bars"></i></a>
+        <nav class="mobile">
+          <a href="#" data-tela="0">Início</a>
+          <a href="#" data-tela="7">Entrar</a>
+          <a href="#" data-tela="1">Quem somos</a>
+          <a href="#" data-tela="2">Horários</a>
+          <a href="#" data-tela="3">Loja</a>
+          <a href="#" data-tela="4">Treinos</a>
+          <a href="#" data-tela="5">Exercícios</a>
+          <a href="#" data-tela="6">Clientes</a>
+        </nav>
+      </section>
+    </header>
+
+    <div class="bg-image"></div>
+
+    <main>
+      <div class="mensagem hidden">
+        <div class="msg-conteudo"></div>
+      </div>
+
+      <section class="home">
+        <h1>NO PAIN NO GAIN</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis inventore porro asperiores consectetur. Pariatur voluptates</p>
+        <button>Seja um de nós</button>
+      </section>
+
+      <section class="quem-somos hidden">
+        <h1>QUEM SOMOS</h1>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque incidunt ad fugiat itaque repellendus, a totam quis quos debitis veniam possimus harum.</p>
+        <nav class="social">
+          <a href="https://github.com/luiizsilverio" target="_blank">
+            <i class="fab fa-github" title="Github"></i>
+          </a>
+          <a href="https://www.facebook.com" target="_blank">
+            <i class="fab fa-facebook" title="Facebook"></i>
+          </a>
+          <a href="https://www.instagram.com" target="_blank">
+            <i class="fab fa-instagram" title="Instagram"></i>
+          </a>
+          <a href="https://www.youtube.com" target="_blank">
+            <i class="fab fa-youtube" title="Youtube"></i>
+          </a>
+        </nav>
+      </section>
+
+      <section class="horarios hidden">
+        <div class="title">
+          <h1>HORÁRIOS</h1>
+          <i class="far fa-calendar-alt"></i>
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto fuga, omnis asperiores eum nihil rem beatae maxime.</p>
+      </section>
+
+      <section class="loja hidden">
+        <div class="title">
+          <h1>NOSSA LOJA</h1>
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit omnis deserunt, nulla officiis nobis non totam, suscipit repudiandae tenetur dolore saepe!</p>
+      </section>
+
+      <section class="treinos hidden">
+        <h1>TREINOS</h1>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus nemo dolorum eos magnam facere quia, doloribus assumenda.</p>
+      </section>
+
+      <section class="exercicios hidden">
+        <h1>EXERCÍCIOS</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem, fugit sit adipisci quaerat.</p>
+      </section>
+
+      <section class="clientes hidden">
+        <h1>CLIENTES</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis reprehenderit repellendus non exercitationem labore nihil dicta autem sit ipsum. Qui, doloremque velit?</p>
+      </section>
+
+      <section class="login hidden">
+        <form class="login">
+          <legend>Login</legend>
+          <label for="name">Nome do Usuário</label>
+          <input type="text" id="name" placeholder="Nome" required autofocus>
+          <label for="password">Senha</label>
+          <input type="password" id="password" placeholder="Senha" required>
+          <div class="actions">
+            <button type="submit" id="btn-login">Entrar</button>
+            <button type="button" class="btn-logout">Sair</button>
+          </div>
+          <a href="#">Não possui uma conta? Cadastre-se AQUI</a>
+        </form>
+        <form class="signup hidden"></form>
+      </section>
+
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

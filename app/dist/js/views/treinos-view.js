@@ -9,3 +9,4 @@ export class TreinosView extends View {
     `;
     }
 }
+//# sourceMappingURL=treinos-view.js.map

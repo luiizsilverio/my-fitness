@@ -39,6 +39,7 @@ export class AuthController {
         }
     }
     logout() {
+        console.log('logout');
         localStorage.removeItem('MyFitness.auth');
         this.token = '';
         this.user_id = 0;
@@ -73,4 +74,20 @@ export class AuthController {
         await this.getUser(data.uid);
         console.log('login ok');
     }
+    async signup({ name, email, password }) {
+        await fetch(`${config.BASE_URL}/users`, {
+            method: 'POST',
+            body: JSON.stringify({
+                name: name[0].toUpperCase() + name.substring(1),
+                username: name,
+                email,
+                password,
+                type_user_id: 1
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
 }
+//# sourceMappingURL=auth-controller.js.map

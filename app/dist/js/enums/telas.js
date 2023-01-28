@@ -9,3 +9,4 @@ export var Telas;
     Telas[Telas["CLIENTES"] = 6] = "CLIENTES";
     Telas[Telas["LOGIN"] = 7] = "LOGIN";
 })(Telas || (Telas = {}));
+//# sourceMappingURL=telas.js.map

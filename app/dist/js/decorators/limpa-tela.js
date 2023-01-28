@@ -10,3 +10,4 @@ export function limpaTela() {
         return descriptor;
     };
 }
+//# sourceMappingURL=limpa-tela.js.map

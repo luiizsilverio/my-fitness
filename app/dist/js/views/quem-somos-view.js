@@ -23,3 +23,4 @@ export class QuemSomosView extends View {
     `;
     }
 }
+//# sourceMappingURL=quem-somos-view.js.map

@@ -1,5 +1,11 @@
 import config from '../config.js';
 
+interface SignupProps {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export class AuthController {
   private user_id: number
   private username: string;
@@ -52,6 +58,7 @@ export class AuthController {
   }
 
   public logout(): void {
+    console.log('logout')
     localStorage.removeItem('MyFitness.auth');
     this.token = '';
     this.user_id = 0;
@@ -70,7 +77,9 @@ export class AuthController {
     return this.token && this.user_id > 0;
   }
 
+
   public async login(username: string, password: string) {
+
     const response = await fetch(`${config.BASE_URL}/sessions`, {
       method: 'POST',
       body: JSON.stringify({
@@ -88,8 +97,27 @@ export class AuthController {
 
     const data = await response.json();
     this.token = data.token;
+
     await this.getUser(data.uid);
     console.log('login ok');
+  }
+
+
+  public async signup({ name, email, password }: SignupProps) {
+
+    await fetch(`${config.BASE_URL}/users`, {
+      method: 'POST',
+      body: JSON.stringify({
+        name: name[0].toUpperCase() + name.substring(1),
+        username: name,
+        email,
+        password,
+        type_user_id: 1
+      }),
+      headers: { // headers opcional, somente se for enviar body
+        'Content-Type': 'application/json'
+      }
+    });
   }
 
 }

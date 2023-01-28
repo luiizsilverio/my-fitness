@@ -19,3 +19,4 @@ export class View {
         }
     }
 }
+//# sourceMappingURL=view.js.map

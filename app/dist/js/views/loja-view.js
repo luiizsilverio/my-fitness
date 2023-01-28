@@ -12,3 +12,4 @@ export class LojaView extends View {
     `;
     }
 }
+//# sourceMappingURL=loja-view.js.map
