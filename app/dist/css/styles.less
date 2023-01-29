@@ -141,8 +141,8 @@ main {
   align-items: center;
 }
 
-main section {
-  width: 900px;
+main .root {
+  // width: 900px;
   min-height: 320px;
   max-width: 90%;
   display: flex;
@@ -159,6 +159,14 @@ main section {
   animation-name: crescer;
   animation-duration: 200ms;
   animation-fill-mode: forwards;
+
+  & > div {
+    width: 900px;
+  }
+
+  .exercicios {
+    width: 1100px;
+  }
 
   .login, .signup {
 

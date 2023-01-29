@@ -1,5 +1,5 @@
 export class View {
-    constructor(seletor = 'section.root') {
+    constructor(seletor = '.root') {
         const elem = document.querySelector(seletor);
         if (elem) {
             this.elemento = elem;

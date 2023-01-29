@@ -7,8 +7,10 @@ export class ExerciciosView extends View {
     this.elemento.classList.remove('hidden');
 
     return `
-      <h1>EXERCÍCIOS</h1>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem, fugit sit adipisci quaerat.</p>
+      <div class="exercicios">
+        <h1>EXERCÍCIOS</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem, fugit sit adipisci quaerat.</p>
+      </div>
     `;
   }
 

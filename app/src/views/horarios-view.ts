@@ -7,11 +7,13 @@ export class HorariosView extends View {
     this.elemento.classList.remove('hidden');
 
     return `
-      <div class="title">
-        <h1>HORÁRIOS</h1>
-        <i class="far fa-calendar-alt"></i>
+      <div class="horarios">
+        <div class="title">
+          <h1>HORÁRIOS</h1>
+          <i class="far fa-calendar-alt"></i>
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto fuga, omnis asperiores eum nihil rem beatae maxime.</p>
       </div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto fuga, omnis asperiores eum nihil rem beatae maxime.</p>
     `;
   }
 
