@@ -2,15 +2,12 @@ import { Telas } from "./enums/telas.js";
 import { AuthController } from "./controllers/auth-controller.js";
 import { AppController } from "./controllers/app-controller.js";
 
-const btnMenu = document.querySelector('.fa-bars');
-const menuMobile = document.querySelector('nav.mobile');
-const opcMenu = document.querySelectorAll('nav a');
-const btnSair = document.querySelector('.btn-logout');
-const btnLogo = document.querySelector('section.logo');
-
-const btnLogin = document.querySelector('section.user');
-const userSpan = document.querySelector('section.user span');
-const formLogin = document.querySelector('form.login');
+const btnMenu = document.querySelector('header .fa-bars');
+const menuMobile = document.querySelector('header nav.mobile');
+const opcMenu = document.querySelectorAll('header nav a');
+const btnLogo = document.querySelector('header section.logo');
+const btnLogin = document.querySelector('header section.user');
+const userSpan = document.querySelector('header section.user span');
 
 const appController = new AppController();
 const authController = new AuthController();
@@ -48,14 +45,6 @@ function MudaTela(ev: Event): void {
   menuMobile.classList.remove('show-menu');
 }
 
-
-// function logout (e: Event): void {
-//   authController.logout();
-//   userSpan.textContent = 'Entrar';
-//   location.reload();
-// }
-
-
 function ativa_opcoes(ativa: boolean = true): void {
   opcMenu.forEach((opcao, index) => {
     const vtela = opcao.getAttribute('data-tela');
@@ -89,9 +78,6 @@ opcMenu.forEach(opcao => {
 btnLogin.addEventListener('click', (e) => MudaTela(e));
 userSpan.addEventListener('click', (e) => MudaTela(e));
 btnLogo.addEventListener('click', (e) => MudaTela(e));
-formLogin.addEventListener('submit', appController.login);
-btnSair.addEventListener('click', () => appController.logout());
-
 
 // On Load
 

@@ -2,7 +2,7 @@ export abstract class View {
 
   protected elemento: HTMLElement;
 
-  constructor(seletor: string) {
+  constructor(seletor: string = 'section.root') {
     const elem = document.querySelector(seletor);
 
     if (elem) {

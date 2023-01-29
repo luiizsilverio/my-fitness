@@ -12,15 +12,15 @@ import { QuemSomosView } from '../views/quem-somos-view.js';
 import { TreinosView } from '../views/treinos-view.js';
 
 export class AppController {
-  private signUpView = new SignUpView('section.login');
-  private signInView = new SignInView('section.login');
-  private homeView = new HomeView('section.home');
-  private clientesView = new ClientesView('section.clientes');
-  private exerciciosView = new ExerciciosView('section.exercicios');
-  private horariosView = new HorariosView('section.horarios');
-  private lojaView = new LojaView('section.loja');
-  private quemSomosView = new QuemSomosView('section.quem-somos')
-  private treinosView = new TreinosView('section.treinos');
+  private signUpView = new SignUpView();
+  private signInView = new SignInView();
+  private homeView = new HomeView();
+  private clientesView = new ClientesView();
+  private exerciciosView = new ExerciciosView();
+  private horariosView = new HorariosView();
+  private lojaView = new LojaView();
+  private quemSomosView = new QuemSomosView();
+  private treinosView = new TreinosView();
   private authController = new AuthController();
 
   public renderSignUpForm() {

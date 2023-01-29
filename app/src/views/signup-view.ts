@@ -7,7 +7,7 @@ export class SignUpView extends View {
     this.elemento.classList.remove('hidden');
 
     return `
-      <form class="login hidden"></form>
+      <!--<form class="login hidden"></form>-->
       <form class="signup">
       <legend style="font-size: 42px">Crie sua Conta</legend>
         <label for="name">Nome do Usuário</label>

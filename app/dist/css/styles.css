@@ -143,10 +143,8 @@ main section {
   animation-duration: 200ms;
   animation-fill-mode: forwards;
 }
-main section.login {
-  background-color: rgba(0, 0, 0, 0.6);
-}
-main section.login a {
+main section .login a,
+main section .signup a {
   text-decoration: none;
   color: var(--cor-laranja-2);
   font-family: Nunito, sans-serif;

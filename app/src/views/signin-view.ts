@@ -19,7 +19,7 @@ export class SignInView extends View {
         </div>
         <a href="#" class="signup">Não possui uma conta? Cadastre-se AQUI</a>
       </form>
-      <form class="signup hidden"></form>
+      <!--<form class="signup hidden"></form>-->
     `;
   }
 
