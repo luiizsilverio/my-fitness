@@ -11,6 +11,7 @@
   --cor-azul: #60A5FA;
   --cor-vermelho: #DC2626;
   --cor-preto: #0e0d0d;
+  --cor-cinza: #cdcdcd;
   --altura-header: 70px;
 }
 
@@ -58,7 +59,7 @@ i {
   &.fa-bars {
     font-size: 32px;
   }
-  &.fab, &.fa-calendar-alt, &.fa-shopping-cart {
+  &.fab, &.fa-calendar-alt, &.fa-shopping-cart, &.fa-weight-hanging {
     font-size: 38px;
   }
   &:active {
@@ -138,11 +139,9 @@ main {
   height: calc(100% - var(--altura-header));
   width: 100%;
   display: flex;
-  align-items: center;
 }
 
 main .root {
-  // width: 900px;
   min-height: 320px;
   max-width: 90%;
   display: flex;
@@ -153,23 +152,19 @@ main .root {
   font-family: Montserrat, sans-serif;
   line-height: 1.5;
   text-align: center;
-  padding: 12px;
-  background-color: rgba(0, 0, 0, 0.5);
-
-  animation-name: crescer;
-  animation-duration: 200ms;
-  animation-fill-mode: forwards;
 
   & > div {
     width: 900px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 18px;
+    position: relative;
+
+    animation-name: crescer;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
   }
 
-  .exercicios {
-    width: 1100px;
-  }
-
-  .login, .signup {
-
+  div.login, div.signup {
     a {
       text-decoration: none;
       color: var(--cor-laranja-2);
@@ -186,7 +181,7 @@ main .root {
 
   p {
     font-size: 24px;
-    color: #cdcdcd;
+    color: var(--cor-cinza);
   }
 
   button {
@@ -204,8 +199,14 @@ main .root {
     text-transform: uppercase;
     transition: all .4s;
 
+    i {
+      color: var(--cor-preto);
+      font-size: 18px;
+      margin-right: 8px;
+    }
+
     &:hover {
-      filter: brightness(.8);
+      filter: brightness(.7);
     }
     &:active {
       transform: translate(2px, 2px);
@@ -220,6 +221,82 @@ main .root {
       color: white;
     }
   }
+
+  .exercicios {
+    width: 1100px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 16px;
+    background-color: transparent;
+
+    .title {
+      background-color: rgba(0, 0, 0, 0.5);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 16px;
+
+      h1 {
+        font-size: 48px;
+      }
+
+      button {
+        width: 160px;
+        margin-top: 0;
+      }
+    }
+
+    .container {
+      display: flex;
+      // background-color: red;
+      flex: 1;
+      max-width: 90%;
+      gap: 16px;
+    }
+
+    .exercicio {
+      background-color: black; // var(--cor-preto);
+      width: 300px;
+      max-height: 400px;
+      border: 2px solid var(--cor-cinza); // rgba(255, 255, 255, .5);
+      padding-bottom: 8px;
+      overflow-y: hidden;
+      transition: all .2s;
+      position: relative;
+      transition: all .4s;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+
+      p {
+        font-size: 18px;
+      }
+
+      .actions {
+        background-color: rgba(0, 0, 0, 0.8);
+        display: none;
+        justify-self: flex-end;
+        justify-content: flex-end;
+        padding: 12px;
+        position: absolute;
+        width: 90px;
+        bottom: 0;
+        right: 0;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        .actions {
+          display: flex;
+        }
+      }
+    }
+  }
+
 }
 
 section.menu-mobile {
@@ -269,8 +346,9 @@ form.login, form.signup {
     font-family: Montserrat, sans-serif;
     text-transform: uppercase;
     font-weight: bold;
+    // color: white;
     display: block;
-    padding: 0 12px;
+    padding: 0 12px 12px;
   }
 
   label {
@@ -299,10 +377,18 @@ form.login, form.signup {
   padding-top: 24px;
   display: flex;
   gap: 18px;
+  justify-content: center;
 }
 
-.title i {
-  margin: 12px 0;
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+
+  i {
+    font-size: 42px;
+  }
 }
 
 section.hidden, div.hidden, form.hidden {

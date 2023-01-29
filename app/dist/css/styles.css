@@ -10,6 +10,7 @@
   --cor-azul: #60A5FA;
   --cor-vermelho: #DC2626;
   --cor-preto: #0e0d0d;
+  --cor-cinza: #cdcdcd;
   --altura-header: 70px;
 }
 html,
@@ -54,7 +55,8 @@ i.fa-bars {
 }
 i.fab,
 i.fa-calendar-alt,
-i.fa-shopping-cart {
+i.fa-shopping-cart,
+i.fa-weight-hanging {
   font-size: 38px;
 }
 i:active {
@@ -123,7 +125,6 @@ main {
   height: calc(100% - var(--altura-header));
   width: 100%;
   display: flex;
-  align-items: center;
 }
 main .root {
   min-height: 320px;
@@ -136,20 +137,18 @@ main .root {
   font-family: Montserrat, sans-serif;
   line-height: 1.5;
   text-align: center;
-  padding: 12px;
+}
+main .root > div {
+  width: 900px;
   background-color: rgba(0, 0, 0, 0.5);
+  padding: 18px;
+  position: relative;
   animation-name: crescer;
   animation-duration: 200ms;
   animation-fill-mode: forwards;
 }
-main .root > div {
-  width: 900px;
-}
-main .root .exercicios {
-  width: 1100px;
-}
-main .root .login a,
-main .root .signup a {
+main .root div.login a,
+main .root div.signup a {
   text-decoration: none;
   color: var(--cor-laranja-2);
   font-family: Nunito, sans-serif;
@@ -162,7 +161,7 @@ main .root h1 {
 }
 main .root p {
   font-size: 24px;
-  color: #cdcdcd;
+  color: var(--cor-cinza);
 }
 main .root button {
   width: 260px;
@@ -180,8 +179,13 @@ main .root button {
   text-transform: uppercase;
   transition: all 0.4s;
 }
+main .root button i {
+  color: var(--cor-preto);
+  font-size: 18px;
+  margin-right: 8px;
+}
 main .root button:hover {
-  filter: brightness(0.8);
+  filter: brightness(0.7);
 }
 main .root button:active {
   transform: translate(2px, 2px);
@@ -193,6 +197,70 @@ main .root button#btn-login {
 main .root button.btn-logout {
   background-color: var(--cor-vermelho);
   color: white;
+}
+main .root .exercicios {
+  width: 1100px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 16px;
+  background-color: transparent;
+}
+main .root .exercicios .title {
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+main .root .exercicios .title h1 {
+  font-size: 48px;
+}
+main .root .exercicios .title button {
+  width: 160px;
+  margin-top: 0;
+}
+main .root .exercicios .container {
+  display: flex;
+  flex: 1;
+  max-width: 90%;
+  gap: 16px;
+}
+main .root .exercicios .exercicio {
+  background-color: black;
+  width: 300px;
+  max-height: 400px;
+  border: 2px solid var(--cor-cinza);
+  padding-bottom: 8px;
+  overflow-y: hidden;
+  transition: all 0.2s;
+  position: relative;
+  transition: all 0.4s;
+}
+main .root .exercicios .exercicio img {
+  width: 100%;
+  object-fit: cover;
+}
+main .root .exercicios .exercicio p {
+  font-size: 18px;
+}
+main .root .exercicios .exercicio .actions {
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-self: flex-end;
+  justify-content: flex-end;
+  padding: 12px;
+  position: absolute;
+  width: 90px;
+  bottom: 0;
+  right: 0;
+}
+main .root .exercicios .exercicio:hover {
+  transform: scale(1.05);
+}
+main .root .exercicios .exercicio:hover .actions {
+  display: flex;
 }
 section.menu-mobile {
   display: flex;
@@ -239,7 +307,7 @@ form.signup legend {
   text-transform: uppercase;
   font-weight: bold;
   display: block;
-  padding: 0 12px;
+  padding: 0 12px 12px;
 }
 form.login label,
 form.signup label {
@@ -264,9 +332,16 @@ form.signup input {
   padding-top: 24px;
   display: flex;
   gap: 18px;
+  justify-content: center;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
 }
 .title i {
-  margin: 12px 0;
+  font-size: 42px;
 }
 section.hidden,
 div.hidden,
