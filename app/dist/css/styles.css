@@ -6,6 +6,9 @@
 :root {
   --cor-laranja: #ffa500;
   --cor-laranja-2: #e99700;
+  --cor-verde: #22C55E;
+  --cor-azul: #60A5FA;
+  --cor-vermelho: #DC2626;
   --cor-preto: #0e0d0d;
   --altura-header: 70px;
 }
@@ -35,6 +38,11 @@ nav a {
 nav.menu a.tela-atual,
 nav.menu a:hover {
   color: var(--cor-laranja);
+}
+nav.menu a.tela-atual.isDisabled,
+nav.menu a:hover.isDisabled {
+  color: white;
+  opacity: 0.7;
 }
 i {
   font-size: 24px;
@@ -131,6 +139,17 @@ main section {
   text-align: center;
   padding: 12px;
   background-color: rgba(0, 0, 0, 0.5);
+  animation-name: crescer;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+}
+main section .login a,
+main section .signup a {
+  text-decoration: none;
+  color: var(--cor-laranja-2);
+  font-family: Nunito, sans-serif;
+  font-size: 14px;
+  margin-top: 18px;
 }
 main section h1 {
   font-size: 54px;
@@ -142,8 +161,9 @@ main section p {
 }
 main section button {
   width: 260px;
-  margin-top: 40px;
+  margin-top: 30px;
   padding: 12px;
+  font-family: Nunito, sans-serif;
   font-size: 20px;
   font-weight: 600;
   cursor: pointer;
@@ -161,6 +181,14 @@ main section button:hover {
 main section button:active {
   transform: translate(2px, 2px);
 }
+main section button#btn-login {
+  background-color: var(--cor-azul);
+  color: white;
+}
+main section button.btn-logout {
+  background-color: var(--cor-vermelho);
+  color: white;
+}
 section.menu-mobile {
   display: flex;
   align-items: center;
@@ -170,21 +198,62 @@ section.menu-mobile nav.mobile {
   display: flex;
   flex-direction: column;
   width: 340px;
-  height: 340px;
+  height: 360px;
   position: absolute;
   right: 8px;
   top: calc(8px + var(--altura-header));
   padding: 12px 0;
   padding-top: 18px;
   background-color: var(--cor-laranja-2);
+  overflow-y: hidden;
+  animation-name: show-menu;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
 }
 section.menu-mobile nav.mobile a {
-  padding: 8px 12px;
+  padding: 6px 18px;
   transition: all 0.3s;
+  font-size: 20px;
 }
 section.menu-mobile nav.mobile a:hover {
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
+}
+form.login,
+form.signup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  padding-bottom: 28px;
+}
+form.login legend,
+form.signup legend {
+  font-size: 48px;
+  font-family: Montserrat, sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: block;
+  padding: 0 12px;
+}
+form.login label,
+form.signup label {
+  align-self: flex-start;
+  font-family: Nunito, sans-serif;
+}
+form.login input,
+form.signup input {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  outline-color: var(--cor-laranja);
+  font-family: Nunito, sans-serif;
+}
+.actions {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+  max-width: 500px;
 }
 .social {
   padding-top: 24px;
@@ -194,8 +263,39 @@ section.menu-mobile nav.mobile a:hover {
 .title i {
   margin: 12px 0;
 }
-section.hidden {
+section.hidden,
+div.hidden,
+form.hidden {
   display: none;
+}
+.mensagem {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  right: 24px;
+  animation-name: crescer;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+}
+.mensagem .msg-conteudo {
+  margin: 0 auto;
+  max-width: 800px;
+  text-align: center;
+  background: var(--cor-verde);
+  padding: 24px 0;
+  font-size: 20px;
+  color: white;
+}
+.mensagem.verde .msg-conteudo {
+  background: var(--cor-verde);
+}
+.mensagem.vermelho .msg-conteudo {
+  background: #F87171;
+}
+.isDisabled {
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 @media (max-width: 600px) {
   section.nopain {
@@ -232,5 +332,25 @@ section.hidden {
   }
   header section.menu-mobile nav.mobile.show-menu {
     display: flex;
+  }
+}
+@keyframes show-menu {
+  from {
+    opacity: 0;
+    height: 0;
+  }
+  to {
+    opacity: 0.97;
+    height: 360px;
+  }
+}
+@keyframes crescer {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

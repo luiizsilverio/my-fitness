@@ -7,6 +7,9 @@
 :root {
   --cor-laranja: #ffa500;
   --cor-laranja-2: #e99700;
+  --cor-verde: #22C55E;
+  --cor-azul: #60A5FA;
+  --cor-vermelho: #DC2626;
   --cor-preto: #0e0d0d;
   --altura-header: 70px;
 }
@@ -40,6 +43,10 @@ nav a {
 nav.menu a {
   &.tela-atual, &:hover {
     color: var(--cor-laranja);
+    &.isDisabled {
+      color: white;
+      opacity: 0.7;
+    }
   }
 }
 
@@ -149,6 +156,21 @@ main section {
   padding: 12px;
   background-color: rgba(0, 0, 0, 0.5);
 
+  animation-name: crescer;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+
+  .login, .signup {
+
+    a {
+      text-decoration: none;
+      color: var(--cor-laranja-2);
+      font-family: Nunito, sans-serif;
+      font-size: 14px;
+      margin-top: 18px;
+    }
+  }
+
   h1 {
     font-size: 54px;
     color: white;
@@ -161,8 +183,9 @@ main section {
 
   button {
     width: 260px;
-    margin-top: 40px;
+    margin-top: 30px;
     padding: 12px;
+    font-family: Nunito, sans-serif;
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
@@ -179,6 +202,15 @@ main section {
     &:active {
       transform: translate(2px, 2px);
     }
+
+    &#btn-login {
+      background-color: var(--cor-azul);
+      color: white;
+    }
+    &.btn-logout {
+      background-color: var(--cor-vermelho);
+      color: white;
+    }
   }
 }
 
@@ -190,17 +222,24 @@ section.menu-mobile {
     display: flex;
     flex-direction: column;
     width: 340px;
-    height: 340px;
+    height: 360px;
     position: absolute;
     right: 8px;
     top: calc(8px + var(--altura-header));
     padding: 12px 0;
     padding-top: 18px;
     background-color: var(--cor-laranja-2);
+    overflow-y: hidden;
+    // opacity: 0.98;
+
+    animation-name: show-menu;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
 
     a {
-      padding: 8px 12px;
+      padding: 6px 18px;
       transition: all .3s;
+      font-size: 20px;
 
       &:hover {
         background-color: rgba(0, 0, 0, 0.7);
@@ -210,23 +249,91 @@ section.menu-mobile {
   }
 }
 
+form.login, form.signup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  padding-bottom: 28px;
+
+  legend {
+    font-size: 48px;
+    font-family: Montserrat, sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+    padding: 0 12px;
+  }
+
+  label {
+    align-self: flex-start;
+    font-family: Nunito, sans-serif;
+  }
+
+  input {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    outline-color: var(--cor-laranja);
+    font-family: Nunito, sans-serif;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 18px;
+
+  width: 100%;
+  max-width: 500px;
+}
+
 .social {
   padding-top: 24px;
   display: flex;
   gap: 18px;
 }
 
-.title {
-  // display: flex;
-  // align-items: center;
-  // gap: 18px;
-  i {
-    margin: 12px 0;
+.title i {
+  margin: 12px 0;
+}
+
+section.hidden, div.hidden, form.hidden {
+  display: none;
+}
+
+.mensagem {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  right: 24px;
+
+  animation-name: crescer;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+
+  .msg-conteudo {
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: center;
+    background: var(--cor-verde);
+    padding: 24px 0;
+    font-size: 20px;
+    color: white;
+  }
+
+  &.verde .msg-conteudo {
+    background: var(--cor-verde);
+  }
+
+  &.vermelho .msg-conteudo {
+    background: #F87171;
   }
 }
 
-section.hidden {
-  display: none;
+.isDisabled {
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 // MEDIA QUERIES -----------------------------------------------------
@@ -277,5 +384,29 @@ section.hidden {
         display: flex;
       }
     }
+  }
+}
+
+// ANIMATIONS --------------------------------------------------
+
+@keyframes show-menu {
+  from {
+    opacity: 0;
+    height: 0;
+  }
+  to {
+    opacity: 0.97;
+    height: 360px;
+  }
+}
+
+@keyframes crescer {
+  from {
+    opacity: 0;
+    transform: scale(.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

@@ -16,25 +16,25 @@
     <header>
       <section class="logo">
         <a href="#">
-          <img src="assets/icon.svg" alt="Logo My-Fitness">
+          <img src="assets/icon.svg" alt="Logo My-Fitness" data-tela="0">
         </a>
         <span>MY-FITNESS</span>
       </section>
 
       <nav class="menu">
-        <a href="#" class="tela-atual" data-tela="0">Início</a>
-        <a href="#" data-tela="1">Quem somos</a>
-        <a href="#" data-tela="2">Horários</a>
-        <a href="#" data-tela="3">Loja</a>
-        <a href="#" data-tela="4">Treinos</a>
-        <a href="#" data-tela="5">Exercícios</a>
-        <a href="#" data-tela="6">Clientes</a>
+        <a data-tela="0" class="tela-atual">Início</a>
+        <a data-tela="1">Quem somos</a>
+        <a data-tela="2">Horários</a>
+        <a data-tela="3">Loja</a>
+        <a data-tela="4">Treinos</a>
+        <a data-tela="5">Exercícios</a>
+        <a data-tela="6">Clientes</a>
       </nav>
 
       <section class="user">
         <a href="#" data-tela="7">
           <i class="far fa-user" data-tela="7"></i>
-          <span>Entrar</span>
+          <span data-tela="7">Entrar</span>
         </a>
       </section>
 
@@ -56,66 +56,12 @@
     <div class="bg-image"></div>
 
     <main>
-      <section class="home">
-        <h1>NO PAIN NO GAIN</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis inventore porro asperiores consectetur. Pariatur voluptates</p>
-        <button>Seja um de nós</button>
-      </section>
+      <div class="mensagem hidden">
+        <div class="msg-conteudo"></div>
+      </div>
 
-      <section class="quem-somos hidden">
-        <h1>QUEM SOMOS</h1>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque incidunt ad fugiat itaque repellendus, a totam quis quos debitis veniam possimus harum.</p>
-        <nav class="social">
-          <a href="https://github.com/luiizsilverio" target="_blank">
-            <i class="fab fa-github" title="Github"></i>
-          </a>
-          <a href="https://www.facebook.com" target="_blank">
-            <i class="fab fa-facebook" title="Facebook"></i>
-          </a>
-          <a href="https://www.instagram.com" target="_blank">
-            <i class="fab fa-instagram" title="Instagram"></i>
-          </a>
-          <a href="https://www.youtube.com" target="_blank">
-            <i class="fab fa-youtube" title="Youtube"></i>
-          </a>
-        </nav>
-      </section>
+      <section class="root"></section>
 
-      <section class="horarios hidden">
-        <div class="title">
-          <h1>HORÁRIOS</h1>
-          <i class="far fa-calendar-alt"></i>
-        </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto fuga, omnis asperiores eum nihil rem beatae maxime.</p>
-      </section>
-
-      <section class="loja hidden">
-        <div class="title">
-          <h1>NOSSA LOJA</h1>
-          <i class="fas fa-shopping-cart"></i>
-        </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit omnis deserunt, nulla officiis nobis non totam, suscipit repudiandae tenetur dolore saepe!</p>
-      </section>
-
-      <section class="treinos hidden">
-        <h1>TREINOS</h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus nemo dolorum eos magnam facere quia, doloribus assumenda.</p>
-      </section>
-
-      <section class="exercicios hidden">
-        <h1>EXERCÍCIOS</h1>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem, fugit sit adipisci quaerat.</p>
-      </section>
-
-      <section class="clientes hidden">
-        <h1>CLIENTES</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis reprehenderit repellendus non exercitationem labore nihil dicta autem sit ipsum. Qui, doloremque velit?</p>
-      </section>
-
-      <section class="login hidden">
-        <h1>ENTRAR</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat iste accusamus voluptatum itaque distinctio. Omnis, iure? Omnis vel delectus odio, veniam praesentium.</p>
-      </section>
     </main>
 
     <script type="module" src="js/app.js"></script>
