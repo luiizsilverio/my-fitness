@@ -7,7 +7,7 @@
   --cor-laranja: #ffa500;
   --cor-laranja-2: #e99700;
   --cor-verde: #22C55E;
-  --cor-azul: #60A5FA;
+  --cor-azul: #2563EB;
   --cor-vermelho: #DC2626;
   --cor-preto: #0e0d0d;
   --cor-cinza: #cdcdcd;
@@ -127,8 +127,7 @@ main {
   display: flex;
 }
 main .root {
-  min-height: 320px;
-  max-width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -140,12 +139,20 @@ main .root {
 }
 main .root > div {
   width: 900px;
+  min-height: 320px;
+  max-width: 90%;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 18px;
   position: relative;
   animation-name: crescer;
   animation-duration: 200ms;
   animation-fill-mode: forwards;
+}
+main .root div.login,
+main .root div.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 main .root div.login a,
 main .root div.signup a {
@@ -202,36 +209,53 @@ main .root .exercicios {
   width: 1100px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   position: absolute;
   top: 16px;
   background-color: transparent;
+  padding: 0 0 32px;
 }
 main .root .exercicios .title {
   background-color: rgba(0, 0, 0, 0.5);
   margin-bottom: 12px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 16px;
 }
 main .root .exercicios .title h1 {
   font-size: 48px;
 }
+main .root .exercicios .title i {
+  font-size: 36px;
+  transition: all 0.2s;
+}
+main .root .exercicios .title i:hover {
+  transform: scale(1.1);
+}
 main .root .exercicios .title button {
-  width: 160px;
+  width: 120px;
+  max-height: 42px;
   margin-top: 0;
+  background-color: var(--cor-azul);
+  color: white;
+  font-size: 16px;
+}
+main .root .exercicios .title button:hover {
+  filter: brightness(1.2);
 }
 main .root .exercicios .container {
   display: flex;
-  flex: 1;
-  max-width: 90%;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
   gap: 16px;
 }
 main .root .exercicios .exercicio {
   background-color: black;
-  width: 300px;
+  width: 350px;
+  min-width: 300px;
   max-height: 400px;
-  border: 2px solid var(--cor-cinza);
+  border: 1px solid var(--cor-cinza);
   padding-bottom: 8px;
   overflow-y: hidden;
   transition: all 0.2s;
@@ -240,10 +264,14 @@ main .root .exercicios .exercicio {
 }
 main .root .exercicios .exercicio img {
   width: 100%;
-  object-fit: cover;
+  max-height: 300px;
+  object-fit: contain;
 }
 main .root .exercicios .exercicio p {
   font-size: 18px;
+}
+main .root .exercicios .exercicio:hover h2 {
+  color: white;
 }
 main .root .exercicios .exercicio .actions {
   background-color: rgba(0, 0, 0, 0.8);
@@ -256,8 +284,11 @@ main .root .exercicios .exercicio .actions {
   bottom: 0;
   right: 0;
 }
+main .root .exercicios .exercicio .actions i:hover {
+  transform: scale(1.1);
+}
 main .root .exercicios .exercicio:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 main .root .exercicios .exercicio:hover .actions {
   display: flex;
@@ -391,10 +422,24 @@ form.hidden {
   section.nopain button {
     margin-top: 0;
   }
+  main .root > div.exercicios .title h1 {
+    font-size: 42px;
+  }
+  main .root > div.exercicios div.exercicio {
+    width: 300px;
+  }
 }
 @media (max-width: 520px) {
   header section.menu-mobile nav.mobile {
     min-width: calc(100% - 16px);
+  }
+  main .root > div.exercicios .title h1 {
+    font-size: 36px;
+  }
+}
+@media (max-width: 812px) {
+  main .root > div.exercicios div.exercicio {
+    width: 100%;
   }
 }
 @media (max-width: 900px) {
