@@ -28,6 +28,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   filter: blur(2px);
 }
 nav a {
@@ -216,9 +217,10 @@ main .root .exercicios {
 }
 main .root .exercicios .title {
   background-color: rgba(0, 0, 0, 0.5);
+  width: 460px;
+  margin: 0 auto;
   margin-bottom: 12px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 16px;
 }
@@ -227,6 +229,7 @@ main .root .exercicios .title h1 {
 }
 main .root .exercicios .title i {
   font-size: 36px;
+  margin-left: 16px;
   transition: all 0.2s;
 }
 main .root .exercicios .title i:hover {
@@ -250,7 +253,7 @@ main .root .exercicios .container {
   flex-wrap: wrap;
   gap: 16px;
 }
-main .root .exercicios .exercicio {
+main .root .exercicios .card-exercicio {
   background-color: black;
   width: 350px;
   min-width: 300px;
@@ -262,18 +265,18 @@ main .root .exercicios .exercicio {
   position: relative;
   transition: all 0.4s;
 }
-main .root .exercicios .exercicio img {
+main .root .exercicios .card-exercicio img {
   width: 100%;
   max-height: 300px;
   object-fit: contain;
 }
-main .root .exercicios .exercicio p {
+main .root .exercicios .card-exercicio p {
   font-size: 18px;
 }
-main .root .exercicios .exercicio:hover h2 {
+main .root .exercicios .card-exercicio:hover h2 {
   color: white;
 }
-main .root .exercicios .exercicio .actions {
+main .root .exercicios .card-exercicio .actions {
   background-color: rgba(0, 0, 0, 0.8);
   display: none;
   justify-self: flex-end;
@@ -284,13 +287,13 @@ main .root .exercicios .exercicio .actions {
   bottom: 0;
   right: 0;
 }
-main .root .exercicios .exercicio .actions i:hover {
+main .root .exercicios .card-exercicio .actions i:hover {
   transform: scale(1.1);
 }
-main .root .exercicios .exercicio:hover {
+main .root .exercicios .card-exercicio:hover {
   transform: scale(1.04);
 }
-main .root .exercicios .exercicio:hover .actions {
+main .root .exercicios .card-exercicio:hover .actions {
   display: flex;
 }
 section.menu-mobile {
@@ -425,7 +428,7 @@ form.hidden {
   main .root > div.exercicios .title h1 {
     font-size: 42px;
   }
-  main .root > div.exercicios div.exercicio {
+  main .root > div.exercicios div.card-exercicio {
     width: 300px;
   }
 }
@@ -438,7 +441,7 @@ form.hidden {
   }
 }
 @media (max-width: 812px) {
-  main .root > div.exercicios div.exercicio {
+  main .root > div.exercicios div.card-exercicio {
     width: 100%;
   }
 }
@@ -457,6 +460,17 @@ form.hidden {
   }
   header section.menu-mobile nav.mobile.show-menu {
     display: flex;
+  }
+}
+@media (min-width: 1626px) {
+  main .root > div.exercicios {
+    width: 90%;
+    justify-content: center;
+  }
+  main .root > div.exercicios .title {
+    justify-self: center;
+    margin: 0 auto;
+    margin-bottom: 12px;
   }
 }
 @keyframes show-menu {

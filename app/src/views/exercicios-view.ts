@@ -14,7 +14,7 @@ export class ExerciciosView extends View {
         </div>
 
         <div class="container">
-          <div class="exercicio">
+          <div class="card-exercicio">
             <h2>Pullover</h2>
             <img src="http://localhost:3333/exercises/5e48ad343328-mulher-exercicio-pullover.jpg" alt="pullover">
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem</p>
@@ -23,7 +23,7 @@ export class ExerciciosView extends View {
               <i class="fas fa-trash-alt" title="Excluir"></i>
             </div>
           </div>
-          <div class="exercicio">
+          <div class="card-exercicio">
             <h2>Supino</h2>
             <img src="http://localhost:3333/exercises/87a7baa3967e-supino.jpeg" alt="supino">
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem apenas um teste para ver como fica na tela lorem ipsum</p>
@@ -32,7 +32,7 @@ export class ExerciciosView extends View {
             <i class="fas fa-trash-alt" title="Excluir"></i>
             </div>
           </div>
-          <div class="exercicio">
+          <div class="card-exercicio">
             <h2>Pullover</h2>
             <img src="http://localhost:3333/exercises/5e48ad343328-mulher-exercicio-pullover.jpg" alt="pullover">
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem</p>
@@ -41,7 +41,7 @@ export class ExerciciosView extends View {
               <i class="fas fa-trash-alt" title="Excluir"></i>
             </div>
           </div>
-          <div class="exercicio">
+          <div class="card-exercicio">
             <h2>Supino</h2>
             <img src="http://localhost:3333/exercises/87a7baa3967e-supino.jpeg" alt="supino">
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem apenas um teste para ver como fica na tela lorem ipsum</p>

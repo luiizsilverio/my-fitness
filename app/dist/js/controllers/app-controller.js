@@ -38,6 +38,9 @@ export class AppController {
         formLogin.addEventListener('submit', (e) => this.login(e));
         btnSair.addEventListener('click', () => this.logout());
     }
+    renderExercicios() {
+        this.exerciciosView.render();
+    }
     render(tela) {
         switch (tela) {
             case Telas.INICIO:
@@ -62,7 +65,7 @@ export class AppController {
                 break;
             case Telas.EXERCICIOS:
                 if (this.authController.logado()) {
-                    this.exerciciosView.render();
+                    this.renderExercicios();
                 }
                 else {
                     this.renderSignInForm();

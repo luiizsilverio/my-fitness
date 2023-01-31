@@ -6,7 +6,7 @@ export class SignInView extends View {
         return `
       <div class="login">
         <form class="login">
-          <legend>Acessar</legend>
+          <legend>Acesso</legend>
           <label for="name">Nome do Usuário</label>
           <input type="text" id="name" placeholder="Nome" required autofocus>
           <label for="password">Senha</label>
