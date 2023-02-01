@@ -1,8 +1,9 @@
+import { Exercicio } from "../models/exercicio.js";
 import { View } from "./view.js";
 
-export class ExerciciosView extends View {
+export class ExerciciosView extends View<Exercicio[]> {
 
-  protected template(): string {
+  protected template(model: Exercicio[]): string {
     this.esconde_sessoes();
     this.elemento.classList.remove('hidden');
 
@@ -14,45 +15,29 @@ export class ExerciciosView extends View {
         </div>
 
         <div class="container">
-          <div class="card-exercicio">
-            <h2>Pullover</h2>
-            <img src="http://localhost:3333/exercises/5e48ad343328-mulher-exercicio-pullover.jpg" alt="pullover">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem</p>
-            <div class="actions">
-              <i class="fas fa-edit" title="Alterar"></i>
-              <i class="fas fa-trash-alt" title="Excluir"></i>
-            </div>
-          </div>
-          <div class="card-exercicio">
-            <h2>Supino</h2>
-            <img src="http://localhost:3333/exercises/87a7baa3967e-supino.jpeg" alt="supino">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem apenas um teste para ver como fica na tela lorem ipsum</p>
-            <div class="actions">
-            <i class="fas fa-edit" title="Alterar"></i>
-            <i class="fas fa-trash-alt" title="Excluir"></i>
-            </div>
-          </div>
-          <div class="card-exercicio">
-            <h2>Pullover</h2>
-            <img src="http://localhost:3333/exercises/5e48ad343328-mulher-exercicio-pullover.jpg" alt="pullover">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem</p>
-            <div class="actions">
-              <i class="fas fa-edit" title="Alterar"></i>
-              <i class="fas fa-trash-alt" title="Excluir"></i>
-            </div>
-          </div>
-          <div class="card-exercicio">
-            <h2>Supino</h2>
-            <img src="http://localhost:3333/exercises/87a7baa3967e-supino.jpeg" alt="supino">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis voluptatem apenas um teste para ver como fica na tela lorem ipsum</p>
-            <div class="actions">
-            <i class="fas fa-edit" title="Alterar"></i>
-            <i class="fas fa-trash-alt" title="Excluir"></i>
-            </div>
-          </div>
+          {
+            model.map((exercicio: Exercicio) => card(exercicio))
+          }
         </div>
       </div>
     `;
   }
 
+  private card(data: Exercicio) {
+    return `
+      <div class="card-exercicio">
+        <h2>{data.name}</h2>
+        {
+          data?.url_image && (
+            <img src="http://localhost:3333/exercises/${data.url_image}" alt="pullover">
+          )
+        }
+        <p>{data.obs}</p>
+        <div class="actions">
+          <i class="fas fa-edit" title="Alterar"></i>
+          <i class="fas fa-trash-alt" title="Excluir"></i>
+        </div>
+      </div>
+    `;
+  }
 }

@@ -11,7 +11,7 @@ export function limpaTela() {
     descriptor.value = function(...args: any[]) {
 
       const retorno = metodoOriginal.apply(this, args);
-      const elem = <View>target;
+      const elem = <View<null>>target;
       console.log(elem);
       return retorno;
     }

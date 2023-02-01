@@ -8,8 +8,8 @@ export class View {
             throw Error(`Seletor ${seletor} não existe no DOM.`);
         }
     }
-    render() {
-        let template = this.template();
+    render(model) {
+        let template = this.template(model);
         this.elemento.innerHTML = template;
     }
     esconde_sessoes() {

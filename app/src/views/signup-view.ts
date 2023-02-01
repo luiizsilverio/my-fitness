@@ -1,6 +1,6 @@
 import { View } from "./view.js";
 
-export class SignUpView extends View {
+export class SignUpView extends View<null> {
 
   protected template(): string {
     this.esconde_sessoes();

@@ -36,7 +36,7 @@ export class AuthController {
     try {
       const response = await fetch(`${config.BASE_URL}/users/${id}`, {
         method: 'GET',
-        headers: { // headers opcional, somente se for enviar body
+        headers: {
           'Authorization': `Bearer ${this.token}`
         }
       });
