@@ -11,6 +11,7 @@ import { LojaView } from '../views/loja-view.js';
 import { QuemSomosView } from '../views/quem-somos-view.js';
 import { TreinosView } from '../views/treinos-view.js';
 import { ExerciciosService } from '../services/exercicios-service.js';
+import { NewExercicioView } from '../views/new-exercicio-view.js';
 
 export class AppController {
   private signUpView = new SignUpView();
@@ -22,6 +23,7 @@ export class AppController {
   private lojaView = new LojaView();
   private quemSomosView = new QuemSomosView();
   private treinosView = new TreinosView();
+  private newExercicioView = new NewExercicioView();
   private authController = new AuthController();
   private exerciciosService = new ExerciciosService();
 
@@ -49,7 +51,13 @@ export class AppController {
 
   public async renderExercicios() {
     const dados = await this.exerciciosService.getAllExercises();
+    // addeventlistener aqui...
     this.exerciciosView.render(dados);
+  }
+
+  public async renderEditaExercicio(id: string) {
+    const dados = await this.exerciciosService.getExercise(id);
+    this.newExercicioView.render(dados);
   }
 
   public render(tela: number) {
