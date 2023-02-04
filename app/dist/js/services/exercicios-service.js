@@ -27,5 +27,16 @@ export class ExerciciosService {
         const data = await response.json();
         return data;
     }
+    async excludeExercise(id) {
+        const response = await fetch(`${config.BASE_URL}/exercises/${id}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${config.getToken()}`,
+            }
+        });
+        if (!response.ok) {
+            throw Error(`Erro ao obter Exercício (${response.statusText})`);
+        }
+    }
 }
 //# sourceMappingURL=exercicios-service.js.map

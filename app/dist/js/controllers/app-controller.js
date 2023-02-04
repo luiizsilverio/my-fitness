@@ -45,10 +45,18 @@ export class AppController {
     async renderExercicios() {
         const dados = await this.exerciciosService.getAllExercises();
         this.exerciciosView.render(dados);
-    }
-    async renderEditaExercicio(id) {
-        const dados = await this.exerciciosService.getExercise(id);
-        this.newExercicioView.render(dados);
+        const addBtns = document.querySelectorAll('.exercicios i.fa-plus-circle');
+        const editBtns = document.querySelectorAll('.exercicios i.fa-edit');
+        const delBtns = document.querySelectorAll('.exercicios i.fa-trash-alt');
+        for (const addBtn of addBtns) {
+            addBtn.addEventListener('click', (e) => this.renderEditaExercicio(e));
+        }
+        for (const editBtn of editBtns) {
+            editBtn.addEventListener('click', (e) => this.renderEditaExercicio(e));
+        }
+        for (const delBtn of delBtns) {
+            delBtn.addEventListener('click', async (e) => this.excluiExercicio(e));
+        }
     }
     render(tela) {
         switch (tela) {
@@ -114,6 +122,35 @@ export class AppController {
         divMensagem.classList.add('vermelho');
         divMensagem.classList.remove('hidden', 'verde');
         setTimeout(() => this.limpaMensagem(), 3000);
+    }
+    async renderEditaExercicio(ev) {
+        var element = ev.target;
+        const id = element.getAttribute('data-id');
+        let dados;
+        if (!id || id === 'new') {
+            console.log('new');
+        }
+        else {
+            dados = await this.exerciciosService.getExercise(id);
+        }
+        this.newExercicioView.render(dados);
+    }
+    async excluiExercicio(ev) {
+        var element = ev.target;
+        const id = element.getAttribute('data-id');
+        if (!id || id === 'new')
+            return;
+        if (!window.confirm(`Confirma Excluir o Exercício?`)) {
+            return;
+        }
+        try {
+            await this.exerciciosService.excludeExercise(id);
+            this.renderExercicios();
+            this.showMessage('Exercício excluído.');
+        }
+        catch (erro) {
+            this.showError(erro);
+        }
     }
     async login(e, newUser = false) {
         e.preventDefault();

@@ -87,6 +87,9 @@ header nav.menu {
   align-items: center;
   flex: 1;
 }
+header nav.menu a {
+  cursor: pointer;
+}
 header section.user {
   display: flex;
   flex-direction: column;
@@ -225,6 +228,7 @@ main .root .exercicios .title {
 }
 main .root .exercicios .title h1 {
   font-size: 48px;
+  padding: 0 16px;
 }
 main .root .exercicios .title i {
   font-size: 36px;
@@ -268,12 +272,15 @@ main .root .exercicios .card-exercicio:not('.card-new') {
 main .root .exercicios .card-exercicio.card-new {
   height: 400px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 main .root .exercicios .card-exercicio.card-new i {
   font-size: 90px;
   opacity: 0.8;
+  flex: 1;
+  padding-top: 120px;
 }
 main .root .exercicios .card-exercicio img {
   width: 100%;
@@ -283,6 +290,11 @@ main .root .exercicios .card-exercicio img {
 main .root .exercicios .card-exercicio img.empty-img {
   width: 70%;
   opacity: 0.8;
+}
+main .root .exercicios .card-exercicio h2 {
+  font-size: 20px;
+  padding: 8px 0;
+  background-color: rgba(39, 39, 39, 0.8);
 }
 main .root .exercicios .card-exercicio p {
   font-size: 18px;

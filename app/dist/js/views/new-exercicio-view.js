@@ -6,7 +6,7 @@ export class NewExercicioView extends View {
         return `
       <div class="new-exercicio">
         <div class="title">
-          <h1>${model.name}</h1>
+          <h1>${model?.name}</h1>
         </div>
 
         <div class="container">

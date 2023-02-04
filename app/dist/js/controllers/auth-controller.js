@@ -1,6 +1,8 @@
 import config from '../config.js';
+import { AuthService } from '../services/auth-service.js';
 export class AuthController {
     constructor() {
+        this.authService = new AuthService();
         const auth = localStorage.getItem('MyFitness.auth');
         if (auth) {
             const authData = JSON.parse(auth);
@@ -18,13 +20,7 @@ export class AuthController {
     }
     async getUser(id) {
         try {
-            const response = await fetch(`${config.BASE_URL}/users/${id}`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${this.token}`
-                }
-            });
-            const data = await response.json();
+            const data = await this.authService.getUser(id, this.token);
             this.user_id = data.id;
             this.username = data.name;
             this.email = data.email;
@@ -72,6 +68,12 @@ export class AuthController {
         console.log('login ok');
     }
     async signup({ name, email, password }) {
+        try {
+            const response = await this.authService.signUp({ name, email, password });
+        }
+        catch (error) {
+            console.log(error);
+        }
         await fetch(`${config.BASE_URL}/users`, {
             method: 'POST',
             body: JSON.stringify({

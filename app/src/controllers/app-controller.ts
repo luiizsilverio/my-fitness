@@ -12,6 +12,7 @@ import { QuemSomosView } from '../views/quem-somos-view.js';
 import { TreinosView } from '../views/treinos-view.js';
 import { ExerciciosService } from '../services/exercicios-service.js';
 import { NewExercicioView } from '../views/new-exercicio-view.js';
+import { Exercicio } from '../models/exercicio.js';
 
 export class AppController {
   private signUpView = new SignUpView();
@@ -51,14 +52,23 @@ export class AppController {
 
   public async renderExercicios() {
     const dados = await this.exerciciosService.getAllExercises();
-    // addeventlistener aqui...
     this.exerciciosView.render(dados);
+
+    const addBtns = document.querySelectorAll('.exercicios i.fa-plus-circle');
+    const editBtns = document.querySelectorAll('.exercicios i.fa-edit');
+    const delBtns = document.querySelectorAll('.exercicios i.fa-trash-alt');
+
+    for (const addBtn of addBtns) {
+      addBtn.addEventListener('click', (e) => this.renderEditaExercicio(e));
+    }
+    for (const editBtn of editBtns) {
+      editBtn.addEventListener('click', (e) => this.renderEditaExercicio(e));
+    }
+    for (const delBtn of delBtns) {
+      delBtn.addEventListener('click', async (e) => this.excluiExercicio(e));
+    }
   }
 
-  public async renderEditaExercicio(id: string) {
-    const dados = await this.exerciciosService.getExercise(id);
-    this.newExercicioView.render(dados);
-  }
 
   public render(tela: number) {
     switch (tela) {
@@ -131,6 +141,44 @@ export class AppController {
     divMensagem.classList.remove('hidden', 'verde');
 
     setTimeout(() => this.limpaMensagem(), 3000);
+  }
+
+
+  private async renderEditaExercicio(ev: Event) {
+    var element = ev.target as HTMLElement;
+    const id = element.getAttribute('data-id');
+    let dados: Exercicio;
+
+    if (!id || id === 'new') {
+      // não busca os dados na API
+      console.log('new')
+    } else {
+      dados = await this.exerciciosService.getExercise(id);
+    }
+
+
+    this.newExercicioView.render(dados);
+  }
+
+
+  private async excluiExercicio(ev: Event) {
+    var element = ev.target as HTMLElement;
+    const id = element.getAttribute('data-id');
+
+    if (!id || id === 'new') return;
+
+    if (!window.confirm(`Confirma Excluir o Exercício?`)) {
+      return;
+    }
+
+    try {
+      await this.exerciciosService.excludeExercise(id);
+      this.renderExercicios();
+      this.showMessage('Exercício excluído.');
+    }
+    catch (erro) {
+      this.showError(erro);
+    }
   }
 
 

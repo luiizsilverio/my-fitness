@@ -47,4 +47,16 @@ export class ExerciciosService {
     return data;
   }
 
+  public async excludeExercise(id: string): Promise<void> {
+    const response = await fetch(`${config.BASE_URL}/exercises/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${config.getToken()}`,
+      }
+    })
+
+    if (!response.ok) {
+      throw Error(`Erro ao obter Exercício (${response.statusText})`);
+    }
+  }
 }

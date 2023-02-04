@@ -92,6 +92,10 @@ header {
     justify-content: space-around;
     align-items: center;
     flex: 1;
+
+    a {
+      cursor: pointer;
+    }
   }
 
   section.user {
@@ -249,6 +253,7 @@ main .root {
 
       h1 {
         font-size: 48px;
+        padding: 0 16px;
       }
 
 
@@ -302,12 +307,15 @@ main .root {
       &.card-new {
         height: 400px;
         display: flex;
-        align-items: center;
         justify-content: center;
+        flex-direction: column;
+        overflow-x: hidden;
 
         i {
           font-size: 90px;
           opacity: .8;
+          flex: 1;
+          padding-top: 120px;
         }
       }
 
@@ -320,6 +328,12 @@ main .root {
           width: 70%;
           opacity: .8;
         }
+      }
+
+      h2 {
+        font-size: 20px;
+        padding: 8px 0;
+        background-color: rgba(39, 39, 39, 0.8);
       }
 
       p {

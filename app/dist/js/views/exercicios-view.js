@@ -23,9 +23,9 @@ export class ExerciciosView extends View {
         ${data?.url_image ? (`<img src="http://localhost:3333/exercises/${data.url_image}" alt="pullover">`) : (`<img src="assets/icon.svg" alt="Exercício sem foto" class="empty-img">`)}
         <p>${data.obs}</p>
         <div class="actions">
-          <i class="fas fa-plus-circle" title="Incluir Exercício"></i>
-          <i class="fas fa-edit" title="Alterar"></i>
-          <i class="fas fa-trash-alt" title="Excluir"></i>
+          <i class="fas fa-plus-circle" title="Incluir Exercício" data-id='new'></i>
+          <i class="fas fa-edit" title="Alterar" data-id=${data.id}></i>
+          <i class="fas fa-trash-alt" title="Excluir" data-id=${data.id}></i>
         </div>
       </div>
     `;
@@ -33,7 +33,8 @@ export class ExerciciosView extends View {
     cardNewExercise() {
         return `
       <div class="card-exercicio card-new">
-        <i class="fas fa-plus-circle" title="Incluir Exercício"></i>
+        <h2>Criar novo Exercício</h2>
+        <i class="fas fa-plus-circle" title="Incluir Exercício" data-id='new'></i>
       </div>
     `;
     }
