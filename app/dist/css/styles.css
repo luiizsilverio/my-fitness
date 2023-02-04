@@ -7,9 +7,10 @@
   --cor-laranja: #ffa500;
   --cor-laranja-2: #e99700;
   --cor-verde: #22C55E;
-  --cor-azul: #60A5FA;
+  --cor-azul: #2563EB;
   --cor-vermelho: #DC2626;
   --cor-preto: #0e0d0d;
+  --cor-cinza: #cdcdcd;
   --altura-header: 70px;
 }
 html,
@@ -27,6 +28,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   filter: blur(2px);
 }
 nav a {
@@ -54,7 +56,8 @@ i.fa-bars {
 }
 i.fab,
 i.fa-calendar-alt,
-i.fa-shopping-cart {
+i.fa-shopping-cart,
+i.fa-weight-hanging {
   font-size: 38px;
 }
 i:active {
@@ -65,7 +68,7 @@ header {
   max-width: 1100px;
   margin: 0 auto;
   border-bottom: 1px solid rgba(255, 165, 0, 0.7);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: space-between;
   gap: 8px;
@@ -123,12 +126,9 @@ main {
   height: calc(100% - var(--altura-header));
   width: 100%;
   display: flex;
-  align-items: center;
 }
-main section {
-  width: 900px;
-  min-height: 320px;
-  max-width: 90%;
+main .root {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,29 +137,41 @@ main section {
   font-family: Montserrat, sans-serif;
   line-height: 1.5;
   text-align: center;
-  padding: 12px;
+}
+main .root > div {
+  width: 900px;
+  min-height: 320px;
+  max-width: 90%;
   background-color: rgba(0, 0, 0, 0.5);
+  padding: 18px;
+  position: relative;
   animation-name: crescer;
   animation-duration: 200ms;
   animation-fill-mode: forwards;
 }
-main section .login a,
-main section .signup a {
+main .root div.login,
+main .root div.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .root div.login a,
+main .root div.signup a {
   text-decoration: none;
   color: var(--cor-laranja-2);
   font-family: Nunito, sans-serif;
   font-size: 14px;
   margin-top: 18px;
 }
-main section h1 {
+main .root h1 {
   font-size: 54px;
   color: white;
 }
-main section p {
+main .root p {
   font-size: 24px;
-  color: #cdcdcd;
+  color: var(--cor-cinza);
 }
-main section button {
+main .root button {
   width: 260px;
   margin-top: 30px;
   padding: 12px;
@@ -175,19 +187,129 @@ main section button {
   text-transform: uppercase;
   transition: all 0.4s;
 }
-main section button:hover {
-  filter: brightness(0.8);
+main .root button i {
+  color: var(--cor-preto);
+  font-size: 18px;
+  margin-right: 8px;
 }
-main section button:active {
+main .root button:hover {
+  filter: brightness(0.7);
+}
+main .root button:active {
   transform: translate(2px, 2px);
 }
-main section button#btn-login {
+main .root button#btn-login {
   background-color: var(--cor-azul);
   color: white;
 }
-main section button.btn-logout {
+main .root button.btn-logout {
   background-color: var(--cor-vermelho);
   color: white;
+}
+main .root .exercicios {
+  width: 1100px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 16px;
+  background-color: transparent;
+  padding: 0 0 32px;
+}
+main .root .exercicios .title {
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+main .root .exercicios .title h1 {
+  font-size: 48px;
+}
+main .root .exercicios .title i {
+  font-size: 36px;
+  margin-left: 16px;
+  transition: all 0.2s;
+}
+main .root .exercicios .title i:hover {
+  transform: scale(1.1);
+}
+main .root .exercicios .title button {
+  width: 120px;
+  max-height: 42px;
+  margin-top: 0;
+  background-color: var(--cor-azul);
+  color: white;
+  font-size: 16px;
+}
+main .root .exercicios .title button:hover {
+  filter: brightness(1.2);
+}
+main .root .exercicios .container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+main .root .exercicios .card-exercicio {
+  background-color: black;
+  width: 350px;
+  border: 1px solid var(--cor-cinza);
+  padding-bottom: 8px;
+  overflow-y: hidden;
+  position: relative;
+  transition: all 0.2s;
+}
+main .root .exercicios .card-exercicio:not('.card-new') {
+  min-width: 300px;
+  max-height: 400px;
+}
+main .root .exercicios .card-exercicio.card-new {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .root .exercicios .card-exercicio.card-new i {
+  font-size: 90px;
+  opacity: 0.8;
+}
+main .root .exercicios .card-exercicio img {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+}
+main .root .exercicios .card-exercicio img.empty-img {
+  width: 70%;
+  opacity: 0.8;
+}
+main .root .exercicios .card-exercicio p {
+  font-size: 18px;
+}
+main .root .exercicios .card-exercicio:hover h2 {
+  color: white;
+}
+main .root .exercicios .card-exercicio .actions {
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-self: flex-end;
+  justify-content: flex-end;
+  padding: 10px 12px;
+  padding-top: 8px;
+  position: absolute;
+  width: 130px;
+  bottom: 0;
+  right: 0;
+}
+main .root .exercicios .card-exercicio .actions i:hover {
+  transform: scale(1.1);
+}
+main .root .exercicios .card-exercicio:hover {
+  transform: scale(1.04);
+}
+main .root .exercicios .card-exercicio:hover .actions {
+  display: flex;
 }
 section.menu-mobile {
   display: flex;
@@ -234,7 +356,7 @@ form.signup legend {
   text-transform: uppercase;
   font-weight: bold;
   display: block;
-  padding: 0 12px;
+  padding: 0 12px 12px;
 }
 form.login label,
 form.signup label {
@@ -259,9 +381,16 @@ form.signup input {
   padding-top: 24px;
   display: flex;
   gap: 18px;
+  justify-content: center;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
 }
 .title i {
-  margin: 12px 0;
+  font-size: 42px;
 }
 section.hidden,
 div.hidden,
@@ -311,10 +440,24 @@ form.hidden {
   section.nopain button {
     margin-top: 0;
   }
+  main .root > div.exercicios .title h1 {
+    font-size: 42px;
+  }
+  main .root > div.exercicios div.card-exercicio {
+    width: 300px;
+  }
 }
 @media (max-width: 520px) {
   header section.menu-mobile nav.mobile {
     min-width: calc(100% - 16px);
+  }
+  main .root > div.exercicios .title h1 {
+    font-size: 36px;
+  }
+}
+@media (max-width: 812px) {
+  main .root > div.exercicios div.card-exercicio {
+    width: 100%;
   }
 }
 @media (max-width: 900px) {
@@ -332,6 +475,17 @@ form.hidden {
   }
   header section.menu-mobile nav.mobile.show-menu {
     display: flex;
+  }
+}
+@media (min-width: 1626px) {
+  main .root > div.exercicios {
+    width: 90%;
+    justify-content: center;
+  }
+  main .root > div.exercicios .title {
+    justify-self: center;
+    margin: 0 auto;
+    margin-bottom: 12px;
   }
 }
 @keyframes show-menu {

@@ -1,5 +1,5 @@
 export class View {
-    constructor(seletor = 'section.root') {
+    constructor(seletor = '.root') {
         const elem = document.querySelector(seletor);
         if (elem) {
             this.elemento = elem;
@@ -8,8 +8,8 @@ export class View {
             throw Error(`Seletor ${seletor} não existe no DOM.`);
         }
     }
-    render() {
-        let template = this.template();
+    render(model) {
+        let template = this.template(model);
         this.elemento.innerHTML = template;
     }
     esconde_sessoes() {

@@ -9,6 +9,8 @@ import { HorariosView } from '../views/horarios-view.js';
 import { LojaView } from '../views/loja-view.js';
 import { QuemSomosView } from '../views/quem-somos-view.js';
 import { TreinosView } from '../views/treinos-view.js';
+import { ExerciciosService } from '../services/exercicios-service.js';
+import { NewExercicioView } from '../views/new-exercicio-view.js';
 export class AppController {
     constructor() {
         this.signUpView = new SignUpView();
@@ -20,17 +22,19 @@ export class AppController {
         this.lojaView = new LojaView();
         this.quemSomosView = new QuemSomosView();
         this.treinosView = new TreinosView();
+        this.newExercicioView = new NewExercicioView();
         this.authController = new AuthController();
+        this.exerciciosService = new ExerciciosService();
     }
     renderSignUpForm() {
-        this.signUpView.render();
+        this.signUpView.render(null);
         const btnSair = document.querySelector('.btn-logout');
         const formSignup = document.querySelector('form.signup');
         formSignup.addEventListener('submit', (e) => this.signup(e));
         btnSair.addEventListener('click', () => this.logout());
     }
     renderSignInForm() {
-        this.signInView.render();
+        this.signInView.render(null);
         const link = document.querySelector('a.signup');
         const btnSair = document.querySelector('.btn-logout');
         const formLogin = document.querySelector('form.login');
@@ -38,23 +42,31 @@ export class AppController {
         formLogin.addEventListener('submit', (e) => this.login(e));
         btnSair.addEventListener('click', () => this.logout());
     }
+    async renderExercicios() {
+        const dados = await this.exerciciosService.getAllExercises();
+        this.exerciciosView.render(dados);
+    }
+    async renderEditaExercicio(id) {
+        const dados = await this.exerciciosService.getExercise(id);
+        this.newExercicioView.render(dados);
+    }
     render(tela) {
         switch (tela) {
             case Telas.INICIO:
-                this.homeView.render();
+                this.homeView.render(null);
                 break;
             case Telas.QUEM_SOMOS:
-                this.quemSomosView.render();
+                this.quemSomosView.render(null);
                 break;
             case Telas.HORARIOS:
-                this.horariosView.render();
+                this.horariosView.render(null);
                 break;
             case Telas.LOJA:
-                this.lojaView.render();
+                this.lojaView.render(null);
                 break;
             case Telas.TREINOS:
                 if (this.authController.logado()) {
-                    this.treinosView.render();
+                    this.treinosView.render(null);
                 }
                 else {
                     this.renderSignInForm();
@@ -62,7 +74,7 @@ export class AppController {
                 break;
             case Telas.EXERCICIOS:
                 if (this.authController.logado()) {
-                    this.exerciciosView.render();
+                    this.renderExercicios();
                 }
                 else {
                     this.renderSignInForm();
@@ -70,7 +82,7 @@ export class AppController {
                 break;
             case Telas.CLIENTES:
                 if (this.authController.logado()) {
-                    this.clientesView.render();
+                    this.clientesView.render(null);
                 }
                 else {
                     this.renderSignInForm();
@@ -80,7 +92,7 @@ export class AppController {
                 this.renderSignInForm();
                 break;
             default:
-                this.homeView.render();
+                this.homeView.render(null);
         }
     }
     limpaMensagem() {

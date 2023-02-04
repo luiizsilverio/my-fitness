@@ -1,8 +1,8 @@
-export abstract class View {
+export abstract class View<T> {
 
   protected elemento: HTMLElement;
 
-  constructor(seletor: string = 'section.root') {
+  constructor(seletor: string = '.root') {
     const elem = document.querySelector(seletor);
 
     if (elem) {
@@ -12,12 +12,12 @@ export abstract class View {
     }
   }
 
-  public render(): void {
-    let template = this.template();
+  public render(model: T): void {
+    let template = this.template(model);
     this.elemento.innerHTML = template;
   }
 
-  protected abstract template(): string;
+  protected abstract template(model: T): string;
 
   protected esconde_sessoes(): void {
     const mainSections = document.querySelectorAll('main section');
