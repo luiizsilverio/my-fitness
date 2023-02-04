@@ -24,9 +24,6 @@ export class AuthController {
                     'Authorization': `Bearer ${this.token}`
                 }
             });
-            if (!response.ok) {
-                throw Error(`Erro de Autenticação (${response.statusText})`);
-            }
             const data = await response.json();
             this.user_id = data.id;
             this.username = data.name;

@@ -73,7 +73,7 @@ header {
   max-width: 1100px;
   margin: 0 auto;
   border-bottom: 1px solid rgba(255, 165, 0, 0.7);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: space-between;
   gap: 8px;
@@ -239,7 +239,7 @@ main .root {
 
     .title {
       background-color: rgba(0, 0, 0, 0.5);
-      width: 460px;
+      // width: 460px;
       margin: 0 auto;
       margin-bottom: 12px;
       display: flex;
@@ -287,19 +287,39 @@ main .root {
     .card-exercicio {
       background-color: black;
       width: 350px;
-      min-width: 300px;
-      max-height: 400px;
       border: 1px solid var(--cor-cinza); // rgba(255, 255, 255, .5);
       padding-bottom: 8px;
       overflow-y: hidden;
       transition: all .2s;
       position: relative;
-      transition: all .4s;
+      transition: all .2s;
+
+      &:not('.card-new') {
+        min-width: 300px;
+        max-height: 400px;
+      }
+
+      &.card-new {
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          font-size: 90px;
+          opacity: .8;
+        }
+      }
 
       img {
         width: 100%;
-        max-height: 300px;
+        height: 300px;
         object-fit: contain;
+
+        &.empty-img {
+          width: 70%;
+          opacity: .8;
+        }
       }
 
       p {
@@ -317,9 +337,10 @@ main .root {
         display: none;
         justify-self: flex-end;
         justify-content: flex-end;
-        padding: 12px;
+        padding: 10px 12px;
+        padding-top: 8px;
         position: absolute;
-        width: 90px;
+        width: 130px;
         bottom: 0;
         right: 0;
 
@@ -335,7 +356,6 @@ main .root {
           display: flex;
         }
       }
-
     }
   }
 

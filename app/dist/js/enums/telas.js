@@ -8,5 +8,6 @@ export var Telas;
     Telas[Telas["EXERCICIOS"] = 5] = "EXERCICIOS";
     Telas[Telas["CLIENTES"] = 6] = "CLIENTES";
     Telas[Telas["LOGIN"] = 7] = "LOGIN";
+    Telas[Telas["EDITA_EXERCICIO"] = 8] = "EDITA_EXERCICIO";
 })(Telas || (Telas = {}));
 //# sourceMappingURL=telas.js.map

@@ -10,6 +10,7 @@ import { LojaView } from '../views/loja-view.js';
 import { QuemSomosView } from '../views/quem-somos-view.js';
 import { TreinosView } from '../views/treinos-view.js';
 import { ExerciciosService } from '../services/exercicios-service.js';
+import { NewExercicioView } from '../views/new-exercicio-view.js';
 export class AppController {
     constructor() {
         this.signUpView = new SignUpView();
@@ -21,6 +22,7 @@ export class AppController {
         this.lojaView = new LojaView();
         this.quemSomosView = new QuemSomosView();
         this.treinosView = new TreinosView();
+        this.newExercicioView = new NewExercicioView();
         this.authController = new AuthController();
         this.exerciciosService = new ExerciciosService();
     }
@@ -43,6 +45,10 @@ export class AppController {
     async renderExercicios() {
         const dados = await this.exerciciosService.getAllExercises();
         this.exerciciosView.render(dados);
+    }
+    async renderEditaExercicio(id) {
+        const dados = await this.exerciciosService.getExercise(id);
+        this.newExercicioView.render(dados);
     }
     render(tela) {
         switch (tela) {
