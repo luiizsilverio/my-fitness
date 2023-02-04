@@ -1,16 +1,13 @@
 import config from '../config.js';
-
-interface SignupProps {
-  name: string;
-  email: string;
-  password: string;
-}
+import { User } from '../models/user.js';
+import { AuthService, SignupProps } from '../services/auth-service.js';
 
 export class AuthController {
   private user_id: number
   private username: string;
   private email: string;
   private token: string;
+  private authService = new AuthService();
 
   constructor() {
     const auth = localStorage.getItem('MyFitness.auth');
@@ -34,19 +31,8 @@ export class AuthController {
 
   private async getUser(id: number): Promise<void> {
     try {
-      const response = await fetch(`${config.BASE_URL}/users/${id}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${this.token}`
-        }
-      });
+      const data = await this.authService.getUser(id, this.token);
 
-/*
-      if (!response.ok) {
-        throw Error(`Erro de Autenticação (${response.statusText})`);
-      }
-*/
-      const data = await response.json();
       this.user_id = data.id;
       this.username = data.name;
       this.email = data.email;
@@ -105,6 +91,13 @@ export class AuthController {
 
 
   public async signup({ name, email, password }: SignupProps) {
+    try {
+      const response = await this.authService.signUp({ name, email, password });
+
+    } catch(error) {
+      console.log(error);
+
+    }
 
     await fetch(`${config.BASE_URL}/users`, {
       method: 'POST',
