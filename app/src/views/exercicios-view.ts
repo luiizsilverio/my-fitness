@@ -35,7 +35,7 @@ export class ExerciciosView extends View<Exercicio[]> {
           data?.url_image ? (
             `<img src="http://localhost:3333/exercises/${data.url_image}" alt="pullover">`
           ) : (
-            `<img src="assets/icon.svg" alt="Exercício sem foto" class="empty-img">`
+            `<img src="images/icon.svg" alt="Exercício sem foto" class="empty-img">`
           )
         }
         <p>${data.obs}</p>

@@ -31,5 +31,23 @@ export class AuthService {
             throw Error(`Erro ao cadastrar o usuário. (${response.statusText})`);
         }
     }
+    async signIn(username, password) {
+        const response = await fetch(`${config.BASE_URL}/sessions`, {
+            method: 'POST',
+            body: JSON.stringify({
+                username,
+                password
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!response.ok) {
+            throw Error(`Erro de Autenticação (${response.statusText})`);
+        }
+        const data = await response.json();
+        console.log('login ok');
+        return data;
+    }
 }
 //# sourceMappingURL=auth-service.js.map

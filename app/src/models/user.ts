@@ -5,6 +5,7 @@ export class User {
     public name: string,
     public username: string,
     public email: string,
+    public password: string,
     public type_user_id: number,
   ){}
 
@@ -13,9 +14,10 @@ export class User {
     name: string,
     username: string,
     email: string,
+    password: string,
     type_user_id: number,
   ) {
-    return new User(id, name, username, email, type_user_id);
+    return new User(id, name, username, email, password, type_user_id);
   }
 
 }

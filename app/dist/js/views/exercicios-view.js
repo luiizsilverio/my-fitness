@@ -20,7 +20,7 @@ export class ExerciciosView extends View {
         return `
       <div class="card-exercicio">
         <h2>${data.name}</h2>
-        ${data?.url_image ? (`<img src="http://localhost:3333/exercises/${data.url_image}" alt="pullover">`) : (`<img src="assets/icon.svg" alt="Exercício sem foto" class="empty-img">`)}
+        ${data?.url_image ? (`<img src="http://localhost:3333/exercises/${data.url_image}" alt="pullover">`) : (`<img src="images/icon.svg" alt="Exercício sem foto" class="empty-img">`)}
         <p>${data.obs}</p>
         <div class="actions">
           <i class="fas fa-plus-circle" title="Incluir Exercício" data-id='new'></i>

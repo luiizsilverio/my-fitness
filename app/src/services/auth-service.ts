@@ -7,6 +7,11 @@ export interface SignupProps {
   password: string;
 }
 
+interface SignInProps {
+  token: string;
+  uid: string;
+}
+
 export class AuthService {
 
   public async getUser(id: number, token: string): Promise<User> {
@@ -24,6 +29,7 @@ export class AuthService {
     const user: User = await response.json();
     return user;
   }
+
 
   public async signUp({ name, email, password }: SignupProps): Promise<void> {
     const response = await fetch(`${config.BASE_URL}/users`, {
@@ -45,5 +51,26 @@ export class AuthService {
     }
   }
 
+
+  public async signIn(username: string, password: string): Promise<SignInProps> {
+    const response = await fetch(`${config.BASE_URL}/sessions`, {
+      method: 'POST',
+      body: JSON.stringify({
+        username,
+        password
+      }),
+      headers: { // headers opcional, somente se for enviar body
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw Error(`Erro de Autenticação (${response.statusText})`);
+    }
+
+    const data = await response.json();
+    console.log('login ok');
+    return data;
+  }
 
 }
