@@ -1,15 +1,14 @@
 import { Telas } from '../enums/telas.js';
-import { AuthController } from './auth-controller.js';
 import { HomeView } from '../views/home-view.js';
 import { ClientesView } from '../views/clientes-view.js';
 import { HorariosView } from '../views/horarios-view.js';
 import { LojaView } from '../views/loja-view.js';
 import { QuemSomosView } from '../views/quem-somos-view.js';
 import { TreinosView } from '../views/treinos-view.js';
-import { MsgController } from './msg-controller.js';
+import { AuthController } from './auth-controller.js';
 import { ExerciciosController } from './exercicios-controller.js';
 
-export class AppController extends MsgController {
+export class AppController {
   private homeView = new HomeView();
   private clientesView = new ClientesView();
   private horariosView = new HorariosView();
@@ -18,10 +17,6 @@ export class AppController extends MsgController {
   private treinosView = new TreinosView();
   private authController = new AuthController();
   private exerciciosController = new ExerciciosController();
-
-  constructor() {
-    super();
-  }
 
   public render(tela: number) {
     switch (tela) {

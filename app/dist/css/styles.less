@@ -232,7 +232,7 @@ main .root {
     }
   }
 
-  .exercicios {
+  .exercicios, .new-exercicio {
     width: 1100px;
     display: flex;
     flex-direction: column;
@@ -255,125 +255,114 @@ main .root {
         font-size: 48px;
         padding: 0 16px;
       }
+    }
+  }
 
+  .new-exercicio {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .title {
+      background-color: transparent;
+    }
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .card-exercicio {
+    background-color: black;
+    width: 350px;
+    border: 1px solid var(--cor-cinza); // rgba(255, 255, 255, .5);
+    padding-bottom: 8px;
+    overflow-y: hidden;
+    transition: all .2s;
+    position: relative;
+    transition: all .2s;
+
+    &:not('.card-new') {
+      min-width: 300px;
+      max-height: 400px;
+    }
+
+    &.card-new {
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      overflow-x: hidden;
 
       i {
-        font-size: 36px;
-        margin-left: 16px;
+        font-size: 90px;
+        opacity: .8;
+        flex: 1;
+        padding-top: 120px;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 300px;
+      object-fit: contain;
+
+      &.empty-img {
+        width: 70%;
+        opacity: .8;
+      }
+    }
+
+    h2 {
+      font-size: 20px;
+      padding: 8px 0;
+      background-color: rgba(39, 39, 39, 0.8);
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    &:hover {
+      h2 {
+        color: white;
+      }
+    }
+
+    .actions {
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-self: flex-end;
+      justify-content: flex-end;
+      padding: 12px;
+      padding-top: 8px;
+      position: absolute;
+      width: 130px;
+      bottom: 0;
+      right: 0;
+
+      i {
+        font-size: 24px;
         transition: all .2s;
 
         &:hover {
           transform: scale(1.1);
         }
       }
-
-      button {
-        width: 120px;
-        max-height: 42px;
-        margin-top: 0;
-        background-color: var(--cor-azul);
-        color: white;
-        font-size: 16px;
-
-        &:hover {
-          filter: brightness(1.2);
-        }
-      }
     }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .card-exercicio {
-      background-color: black;
-      width: 350px;
-      border: 1px solid var(--cor-cinza); // rgba(255, 255, 255, .5);
-      padding-bottom: 8px;
-      overflow-y: hidden;
-      transition: all .2s;
-      position: relative;
-      transition: all .2s;
-
-      &:not('.card-new') {
-        min-width: 300px;
-        max-height: 400px;
-      }
-
-      &.card-new {
-        height: 400px;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        overflow-x: hidden;
-
-        i {
-          font-size: 90px;
-          opacity: .8;
-          flex: 1;
-          padding-top: 120px;
-        }
-      }
-
-      img {
-        width: 100%;
-        height: 300px;
-        object-fit: contain;
-
-        &.empty-img {
-          width: 70%;
-          opacity: .8;
-        }
-      }
-
-      h2 {
-        font-size: 20px;
-        padding: 8px 0;
-        background-color: rgba(39, 39, 39, 0.8);
-      }
-
-      p {
-        font-size: 18px;
-      }
-
-      &:hover {
-        h2 {
-          color: white;
-        }
-      }
+    &:hover {
+      transform: scale(1.04);
 
       .actions {
-        background-color: rgba(0, 0, 0, 0.8);
-        display: none;
-        justify-self: flex-end;
-        justify-content: flex-end;
-        padding: 10px 12px;
-        padding-top: 8px;
-        position: absolute;
-        width: 130px;
-        bottom: 0;
-        right: 0;
-
-        i:hover {
-          transform: scale(1.1);
-        }
-      }
-
-      &:hover {
-        transform: scale(1.04);
-
-        .actions {
-          display: flex;
-        }
+        display: flex;
       }
     }
   }
-
 }
+
 
 section.menu-mobile {
   display: flex;
@@ -410,7 +399,8 @@ section.menu-mobile {
   }
 }
 
-form.login, form.signup {
+// form.login, form.signup {
+form {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -432,12 +422,21 @@ form.login, form.signup {
     font-family: Nunito, sans-serif;
   }
 
-  input {
+  input, textarea {
     display: inline-block;
     margin-bottom: 12px;
     padding: 8px 12px;
     outline-color: var(--cor-laranja);
     font-family: Nunito, sans-serif;
+  }
+
+  &.form-exercise, &.new-exercicio {
+    max-width: none;
+    width: 50%;
+    & > div {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 
@@ -524,7 +523,7 @@ section.hidden, div.hidden, form.hidden {
     }
   }
 
-  main .root > div.exercicios {
+  main .root > div.exercicios, main .root > div.new-exercicio {
     .title h1 {
       font-size: 42px;
     }
@@ -542,6 +541,11 @@ section.hidden, div.hidden, form.hidden {
     }
   }
   main .root > div.exercicios .title {
+    h1 {
+      font-size: 36px;
+    }
+  }
+  main .root > div.new-exercicio .title {
     h1 {
       font-size: 36px;
     }
@@ -580,14 +584,16 @@ section.hidden, div.hidden, form.hidden {
 }
 
 @media (min-width: 1626px) {
-  main .root > div.exercicios {
-    width: 90%;
-    justify-content: center;
+  main .root {
+    & > div.exercicios, & > div.new-exercicio {
+      width: 90%;
+      justify-content: center;
 
-    .title {
-      justify-self: center;
-      margin: 0 auto;
-      margin-bottom: 12px;
+      .title {
+        justify-self: center;
+        margin: 0 auto;
+        margin-bottom: 12px;
+      }
     }
   }
 }

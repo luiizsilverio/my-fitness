@@ -1,16 +1,14 @@
 import { Telas } from '../enums/telas.js';
-import { AuthController } from './auth-controller.js';
 import { HomeView } from '../views/home-view.js';
 import { ClientesView } from '../views/clientes-view.js';
 import { HorariosView } from '../views/horarios-view.js';
 import { LojaView } from '../views/loja-view.js';
 import { QuemSomosView } from '../views/quem-somos-view.js';
 import { TreinosView } from '../views/treinos-view.js';
-import { MsgController } from './msg-controller.js';
+import { AuthController } from './auth-controller.js';
 import { ExerciciosController } from './exercicios-controller.js';
-export class AppController extends MsgController {
+export class AppController {
     constructor() {
-        super();
         this.homeView = new HomeView();
         this.clientesView = new ClientesView();
         this.horariosView = new HorariosView();

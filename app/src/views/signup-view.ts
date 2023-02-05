@@ -9,7 +9,7 @@ export class SignUpView extends View<null> {
     return `
       <div class="signup">
         <form class="signup">
-        <legend style="font-size: 42px">Crie sua Conta</legend>
+          <legend style="font-size: 42px">Crie sua Conta</legend>
           <label for="name">Nome do Usuário</label>
           <input type="text" id="name" placeholder="Nome" required>
           <label for="email">E-Mail do Usuário</label>

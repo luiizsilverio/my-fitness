@@ -1,6 +1,6 @@
-import { ExerciciosService } from "../services/exercicios-service";
-import { ExerciciosView } from "../views/exercicios-view";
-import { MsgController } from "./msg-controller";
+import { ExerciciosService } from "../services/exercicios-service.js";
+import { ExerciciosView } from "../views/exercicios-view.js";
+import { MsgController } from "./msg-controller.js";
 import { NewExercicioView } from '../views/new-exercicio-view.js';
 export class ExerciciosController extends MsgController {
     constructor() {
