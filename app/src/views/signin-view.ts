@@ -15,8 +15,8 @@ export class SignInView extends View<null> {
           <label for="password">Senha</label>
           <input type="password" id="password" placeholder="Senha" required>
           <div class="actions">
-            <button type="submit" id="btn-login">Entrar</button>
-            <button type="button" class="btn-logout">Sair</button>
+            <button type="submit" class="btn-confirma">Entrar</button>
+            <button type="button" class="btn-cancela">Sair</button>
           </div>
           <a href="#" class="signup">Não possui uma conta? Cadastre-se AQUI</a>
         </form>

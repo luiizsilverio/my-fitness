@@ -24,12 +24,14 @@ export class NewExercicioView extends View<Exercicio> {
             multiple="false"
             style="display:none;"
           />
-          ${
-            model?.url_image ? `<img src=${`http://localhost:3333/exercises/${model?.url_image}`} />` : ''
-          }
+          <div class="image">
+            ${
+              model?.url_image ? `<img src=${`http://localhost:3333/exercises/${model?.url_image}`} />` : ''
+            }
+          </div>
           <div class="actions">
-            <button type="submit" id="btn-signup">Confirma</button>
-            <button type="button" class="btn-logout">Cancela</button>
+            <button type="submit" class="btn-confirma">Confirma</button>
+            <button type="button" class="btn-cancela">Cancela</button>
           </div>
         </form>
       </div>

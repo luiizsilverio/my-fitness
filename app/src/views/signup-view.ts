@@ -19,8 +19,8 @@ export class SignUpView extends View<null> {
           <label for="confirm-password">Confirme a Senha</label>
           <input type="password" id="confirm-password" placeholder="Confirme a Senha" required>
           <div class="actions">
-            <button type="submit" id="btn-signup">Confirma</button>
-            <button type="button" class="btn-logout">Cancela</button>
+            <button type="submit" class="btn-confirma">Confirma</button>
+            <button type="button" class="btn-cancela">Cancela</button>
           </div>
         </form>
       </div>

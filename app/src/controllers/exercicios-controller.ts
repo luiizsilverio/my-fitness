@@ -75,8 +75,13 @@ export class ExerciciosController extends MsgController {
 
     try {
       dados = await this.exerciciosService.getExercise(id);
-
       this.newExercicioView.render(dados);
+
+      const form = document.querySelector('.form-exercise');
+      const btCanc = document.querySelector('.btn-cancela');
+
+      form.addEventListener('submit', (e) => this.saveExercise(e));
+      btCanc.addEventListener('click', () => this.render());
     }
     catch (erro) {
       console.log(erro);
@@ -84,4 +89,9 @@ export class ExerciciosController extends MsgController {
     }
   }
 
+  private saveExercise(ev: Event) {
+    ev.preventDefault();
+
+
+  }
 }

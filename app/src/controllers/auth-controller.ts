@@ -161,7 +161,7 @@ export class AuthController extends MsgController {
   public renderSignUpForm() {
     this.signUpView.render(null);
 
-    const btnSair = document.querySelector('.btn-logout');
+    const btnSair = document.querySelector('.btn-cancela');
     const formSignup = document.querySelector('form.signup');
 
     formSignup.addEventListener('submit', (e) => this.signup(e));
@@ -172,7 +172,7 @@ export class AuthController extends MsgController {
     this.signInView.render(null);
 
     const link = document.querySelector('a.signup');
-    const btnSair = document.querySelector('.btn-logout');
+    const btnSair = document.querySelector('.btn-cancela');
     const formLogin = document.querySelector('form.login');
 
     link.addEventListener('click', () => this.renderSignUpForm());
