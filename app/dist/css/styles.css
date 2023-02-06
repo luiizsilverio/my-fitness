@@ -138,7 +138,6 @@ main .root {
   justify-content: center;
   margin: 0 auto;
   font-family: Montserrat, sans-serif;
-  line-height: 1.5;
   text-align: center;
 }
 main .root > div {
@@ -173,6 +172,7 @@ main .root h1 {
 main .root p {
   font-size: 24px;
   color: var(--cor-cinza);
+  line-height: 1.5;
 }
 main .root button {
   width: 260px;
@@ -209,8 +209,13 @@ main .root button.btn-logout {
   background-color: var(--cor-vermelho);
   color: white;
 }
-main .root .exercicios,
-main .root .new-exercicio {
+main .root .actions {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+  max-width: 500px;
+}
+main .root .exercicios {
   width: 1100px;
   display: flex;
   flex-direction: column;
@@ -219,8 +224,7 @@ main .root .new-exercicio {
   background-color: transparent;
   padding: 0 0 32px;
 }
-main .root .exercicios .title,
-main .root .new-exercicio .title {
+main .root .exercicios .title {
   background-color: rgba(0, 0, 0, 0.5);
   margin: 0 auto;
   margin-bottom: 12px;
@@ -228,16 +232,28 @@ main .root .new-exercicio .title {
   align-items: center;
   padding: 0 16px;
 }
-main .root .exercicios .title h1,
-main .root .new-exercicio .title h1 {
+main .root .exercicios .title h1 {
   font-size: 48px;
   padding: 0 16px;
 }
 main .root .new-exercicio {
   background-color: rgba(0, 0, 0, 0.5);
+  padding-bottom: 20px;
 }
 main .root .new-exercicio .title {
   background-color: transparent;
+}
+main .root .new-exercicio .title h1 {
+  font-size: 36px;
+  text-transform: uppercase;
+}
+main .root .new-exercicio .actions {
+  flex-direction: row;
+  padding: 20px 0;
+  margin: 0 auto;
+}
+main .root .new-exercicio button {
+  margin-top: 0;
 }
 main .root .container {
   display: flex;
@@ -368,27 +384,43 @@ form label {
 }
 form input,
 form textarea {
+  border: 2px solid var(--cor-laranja);
+}
+form input:not([type="file"]),
+form textarea {
   display: inline-block;
   margin-bottom: 12px;
   padding: 8px 12px;
   outline-color: var(--cor-laranja);
   font-family: Nunito, sans-serif;
 }
-form.form-exercise,
-form.new-exercicio {
-  max-width: none;
-  width: 50%;
+form textarea {
+  height: 100px;
+  resize: none;
 }
-form.form-exercise > div,
-form.new-exercicio > div {
+form.form-exercise {
+  max-width: none;
+  padding: 20px;
+}
+form.form-exercise > div {
   display: flex;
   flex-direction: column;
 }
-.actions {
-  display: flex;
-  gap: 18px;
-  width: 100%;
-  max-width: 500px;
+form.form-exercise input {
+  margin-bottom: 18px;
+}
+form.form-exercise .btn-image {
+  background-color: var(--cor-cinza);
+  color: black;
+  padding: 6px 16px;
+  margin: 16px 0;
+  transform: all 0.4s;
+}
+form.form-exercise .btn-image:hover {
+  filter: brightness(0.7);
+}
+form.form-exercise .btn-image:active {
+  transform: translate(2px, 2px);
 }
 .social {
   padding-top: 24px;
@@ -460,6 +492,10 @@ form.hidden {
   main .root > div.exercicios div.card-exercicio,
   main .root > div.new-exercicio div.card-exercicio {
     width: 300px;
+  }
+  main .root > div.new-exercicio .title h1 {
+    font-size: 36px;
+    text-transform: uppercase;
   }
 }
 @media (max-width: 520px) {
