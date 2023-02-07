@@ -15,7 +15,7 @@ const authController = new AuthController();
 let telaAtual = Telas.INICIO;
 
 function MudaTela(ev: Event): void {
-  var element = ev.target as HTMLElement;
+  let element = ev.target as HTMLElement;
 
   // const tela = element.getAttribute('data-tela');
   const tela = element.dataset['tela'];

@@ -89,9 +89,40 @@ export class ExerciciosController extends MsgController {
     }
   }
 
-  private saveExercise(ev: Event) {
+  private async saveExercise(ev: Event) {
     ev.preventDefault();
 
+    if (!window.confirm(`Confirma os dados do Exercício?`)) {
+      return;
+    }
 
+    let form = ev.target as HTMLElement;
+    const id = form.dataset['id'];
+
+    // const form = document.querySelector('.form-exercise');
+    const name = form['name'].value;
+    const obs = form['obs'].value;
+    const url_image = form['url_image'].value;
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('obs', obs);
+    formData.append('series', '1');
+    formData.append('waiting_time', '5');
+
+    if (url_image) {
+      formData.append('name', url_image[0]);
+    }
+
+    console.log(id, name, obs, url_image[0])
+    try {
+      await this.exerciciosService.editExercise(id, formData);
+      this.render();
+      this.showMessage('Exercício atualizado com sucesso.');
+    }
+    catch (erro) {
+      console.log(erro);
+      this.showError('Erro ao buscar o exercício');
+    }
   }
 }

@@ -38,5 +38,18 @@ export class ExerciciosService {
             throw Error(`Erro ao obter Exercício (${response.statusText})`);
         }
     }
+    async editExercise(id, data) {
+        const response = await fetch(`${config.BASE_URL}/exercises/${id}`, {
+            method: 'PUT',
+            body: data,
+            headers: {
+                Authorization: `Bearer ${config.getToken()}`,
+                'Content-Type': 'multipart/form-data',
+            }
+        });
+        if (!response.ok) {
+            throw Error(`Erro ao atualizar o Exercício (${response.statusText})`);
+        }
+    }
 }
 //# sourceMappingURL=exercicios-service.js.map

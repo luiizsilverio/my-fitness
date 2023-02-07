@@ -11,7 +11,7 @@ const appController = new AppController();
 const authController = new AuthController();
 let telaAtual = Telas.INICIO;
 function MudaTela(ev) {
-    var element = ev.target;
+    let element = ev.target;
     const tela = element.dataset['tela'];
     ev.preventDefault();
     if (!tela)
