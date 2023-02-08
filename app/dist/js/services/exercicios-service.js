@@ -50,5 +50,17 @@ export class ExerciciosService {
             throw Error(`Erro ao atualizar o Exercício (${response.statusText})`);
         }
     }
+    async addExercise(data) {
+        const response = await fetch(`${config.BASE_URL}/exercises`, {
+            method: 'POST',
+            body: data,
+            headers: {
+                Authorization: `Bearer ${config.getToken()}`,
+            }
+        });
+        if (!response.ok) {
+            throw Error(`Erro ao incluir o Exercício (${response.statusText})`);
+        }
+    }
 }
 //# sourceMappingURL=exercicios-service.js.map

@@ -12,11 +12,11 @@ export class NewExercicioView extends View<Exercicio> {
         <div class="title">
           <h1>Cadastrar Exercício</h1>
         </div>
-        <form class="form-exercise" data-id=${model?.id} data-file=${model?.url_image}>
+        <form class="form-exercise" data-id=${model?.id}>
           <label for="name">Nome do Exercício</label>
-          <input type="text" id="name" placeholder="Nome do exercício" required value=${model?.name}>
+          <input type="text" id="name" placeholder="Nome do exercício" required value=${model?.name || ""}>
           <label for="obs">Descrição do Exercício</label>
-          <textarea id="obs">${model?.obs}</textarea>
+          <textarea id="obs" placeholder="Detalhes sobre o exercício">${model?.obs || ""}</textarea>
           <label for="url_image" class="btn-image">Imagem do Exercício</label>
           <Input
             type="file"

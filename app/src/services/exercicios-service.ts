@@ -74,4 +74,18 @@ export class ExerciciosService {
       throw Error(`Erro ao atualizar o Exercício (${response.statusText})`);
     }
   }
+
+  public async addExercise(data: FormData): Promise<void> {
+    const response = await fetch(`${config.BASE_URL}/exercises`, {
+      method: 'POST',
+      body: data,
+      headers: {
+        Authorization: `Bearer ${config.getToken()}`,
+      }
+    })
+
+    if (!response.ok) {
+      throw Error(`Erro ao incluir o Exercício (${response.statusText})`);
+    }
+  }
 }

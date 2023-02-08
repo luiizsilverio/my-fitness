@@ -53,19 +53,24 @@ export class ExerciciosController extends MsgController {
         var element = ev.target;
         const id = element.getAttribute('data-id');
         let dados;
-        if (!id || id === 'new') {
-            console.log('new');
-            return;
-        }
         try {
-            dados = await this.exerciciosService.getExercise(id);
+            if (!id || id === 'new') {
+            }
+            else {
+                dados = await this.exerciciosService.getExercise(id);
+            }
             this.newExercicioView.render(dados);
             const form = document.querySelector('.form-exercise');
             const btCanc = document.querySelector('.btn-cancela');
             const inputImg = document.querySelector('#url_image');
-            form.addEventListener('submit', (e) => this.saveExercise(e));
             btCanc.addEventListener('click', () => this.render());
             inputImg.addEventListener('change', (e) => this.renderImage(e));
+            if (!id || id === 'new') {
+                form.addEventListener('submit', (e) => this.saveExercise(e, true));
+            }
+            else {
+                form.addEventListener('submit', (e) => this.saveExercise(e, false));
+            }
         }
         catch (erro) {
             console.log(erro);
@@ -84,7 +89,7 @@ export class ExerciciosController extends MsgController {
             spanImage.classList.remove('sel-image');
         }
     }
-    async saveExercise(ev) {
+    async saveExercise(ev, novo) {
         ev.preventDefault();
         if (!window.confirm(`Confirma os dados do Exercício?`)) {
             return;
@@ -97,17 +102,34 @@ export class ExerciciosController extends MsgController {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('obs', obs);
+        if (novo) {
+            formData.append('series', '3');
+            formData.append('waiting_time', '5');
+        }
         if (url_image.value) {
             formData.append('image', url_image.files[0]);
         }
-        try {
-            await this.exerciciosService.editExercise(id, formData);
-            this.render();
-            this.showMessage('Exercício atualizado com sucesso.');
+        if (novo) {
+            try {
+                await this.exerciciosService.addExercise(formData);
+                this.render();
+                this.showMessage('Exercício criado com sucesso.');
+            }
+            catch (erro) {
+                console.log(erro);
+                this.showError('Erro ao criar o exercício');
+            }
         }
-        catch (erro) {
-            console.log(erro);
-            this.showError('Erro ao buscar o exercício');
+        else {
+            try {
+                await this.exerciciosService.editExercise(id, formData);
+                this.render();
+                this.showMessage('Exercício atualizado com sucesso.');
+            }
+            catch (erro) {
+                console.log(erro);
+                this.showError('Erro ao atualizar o exercício');
+            }
         }
     }
 }
