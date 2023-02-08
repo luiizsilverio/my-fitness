@@ -8,7 +8,7 @@ export class NewExercicioView extends View {
         <div class="title">
           <h1>Cadastrar Exercício</h1>
         </div>
-        <form class="form-exercise" data-id=${model?.id}>
+        <form class="form-exercise" data-id=${model?.id} data-file=${model?.url_image}>
           <label for="name">Nome do Exercício</label>
           <input type="text" id="name" placeholder="Nome do exercício" required value=${model?.name}>
           <label for="obs">Descrição do Exercício</label>
@@ -19,7 +19,6 @@ export class NewExercicioView extends View {
             id="url_image"
             multiple="false"
             style="display:none;"
-            value=${model?.url_image}
           />
           <div class="image">
             ${model?.url_image ? `<img src=${`http://localhost:3333/exercises/${model?.url_image}`} />` : ''}

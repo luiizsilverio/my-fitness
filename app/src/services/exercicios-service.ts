@@ -66,7 +66,7 @@ export class ExerciciosService {
       body: data,
       headers: {
         Authorization: `Bearer ${config.getToken()}`,
-        'Content-Type': 'multipart/form-data',
+        // 'Content-Type': 'multipart/form-data',
       }
     })
 

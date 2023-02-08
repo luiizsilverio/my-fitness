@@ -62,12 +62,26 @@ export class ExerciciosController extends MsgController {
             this.newExercicioView.render(dados);
             const form = document.querySelector('.form-exercise');
             const btCanc = document.querySelector('.btn-cancela');
+            const inputImg = document.querySelector('#url_image');
             form.addEventListener('submit', (e) => this.saveExercise(e));
             btCanc.addEventListener('click', () => this.render());
+            inputImg.addEventListener('change', (e) => this.renderImage(e));
         }
         catch (erro) {
             console.log(erro);
             this.showError('Erro ao buscar o exercício');
+        }
+    }
+    renderImage(ev) {
+        ev.preventDefault();
+        const input = ev.target;
+        const url_image = input.value;
+        const spanImage = document.querySelector('.btn-image');
+        if (url_image) {
+            spanImage.classList.add('sel-image');
+        }
+        else {
+            spanImage.classList.remove('sel-image');
         }
     }
     async saveExercise(ev) {
@@ -79,16 +93,13 @@ export class ExerciciosController extends MsgController {
         const id = form.dataset['id'];
         const name = form['name'].value;
         const obs = form['obs'].value;
-        const url_image = form['url_image'].value;
+        const url_image = form['url_image'];
         const formData = new FormData();
         formData.append('name', name);
         formData.append('obs', obs);
-        formData.append('series', '1');
-        formData.append('waiting_time', '5');
-        if (url_image) {
-            formData.append('name', url_image[0]);
+        if (url_image.value) {
+            formData.append('image', url_image.files[0]);
         }
-        console.log(id, name, obs, url_image[0]);
         try {
             await this.exerciciosService.editExercise(id, formData);
             this.render();
