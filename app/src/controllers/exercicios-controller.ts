@@ -13,7 +13,7 @@ export class ExerciciosController extends MsgController {
     super();
   }
 
-  public async excluiExercicio(ev: Event) {
+  public async excluiExercicio(ev: Event): Promise<void> {
     var element = ev.target as HTMLElement;
     const id = element.getAttribute('data-id');
 
@@ -34,8 +34,7 @@ export class ExerciciosController extends MsgController {
     }
   }
 
-
-  public async render() {
+  public async render(): Promise<void> {
     try {
       const dados = await this.exerciciosService.getAllExercises();
 
@@ -61,8 +60,7 @@ export class ExerciciosController extends MsgController {
     }
   }
 
-
-  public async renderEditaExercicio(ev: Event) {
+  public async renderEditaExercicio(ev: Event): Promise<void> {
     var element = ev.target as HTMLElement;
     const id = element.getAttribute('data-id');
     let dados: Exercicio;
@@ -98,7 +96,7 @@ export class ExerciciosController extends MsgController {
     }
   }
 
-  private renderImage(ev: Event) {
+  private renderImage(ev: Event): void {
     ev.preventDefault();
 
     const input = ev.target as HTMLInputElement;
@@ -112,7 +110,7 @@ export class ExerciciosController extends MsgController {
     }
   }
 
-  private async saveExercise(ev: Event, novo: boolean) {
+  private async saveExercise(ev: Event, novo: boolean): Promise<void> {
     ev.preventDefault();
 
     if (!window.confirm(`Confirma os dados do Exercício?`)) {

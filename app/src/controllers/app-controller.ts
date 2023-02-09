@@ -18,7 +18,7 @@ export class AppController {
   private authController = new AuthController();
   private exerciciosController = new ExerciciosController();
 
-  public render(tela: number) {
+  public render(tela: number): void {
     switch (tela) {
       case Telas.INICIO:
         this.homeView.render(null);

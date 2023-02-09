@@ -158,7 +158,7 @@ export class AuthController extends MsgController {
     }
   }
 
-  public renderSignUpForm() {
+  public renderSignUpForm(): void {
     this.signUpView.render(null);
 
     const btnSair = document.querySelector('.btn-cancela');
@@ -168,7 +168,7 @@ export class AuthController extends MsgController {
     btnSair.addEventListener('click', () => this.logout());
   }
 
-  public renderSignInForm() {
+  public renderSignInForm(): void {
     this.signInView.render(null);
 
     const link = document.querySelector('a.signup');
