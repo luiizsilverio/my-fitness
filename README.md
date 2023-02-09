@@ -32,7 +32,7 @@ Agora, tudo bem. No meu próximo projeto, pretendo pegar outra API sem rosto e f
 
 
 ## :camera_flash: Screenshots
-![](https://github.com/luiizsilverio/my-fitness/blob/master/images/my-fitness.avi)
+![](https://github.com/luiizsilverio/my-fitness/blob/master/images/my-fitness.gif)
 
 
 ## :car: Iniciando a aplicação
